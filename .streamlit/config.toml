@@ -1,1 +1,7 @@
-app_password = "PASSWORD1234"
+[theme]
+base="light"
+primaryColor="#4f46e5"
+backgroundColor="#fafafa"
+secondaryBackgroundColor="#ffffff"
+textColor="#111827"
+font="sans serif"
