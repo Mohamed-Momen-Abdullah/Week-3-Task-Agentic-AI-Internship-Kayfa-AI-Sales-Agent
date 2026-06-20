@@ -9,11 +9,12 @@ from database.mongo import save_ticket
 @dataclass
 class KayfaDeps:
     db: KayfaKnowledgeBase
+    session_id: str  
 
 # 2. Define the Agent and its core instructions
 # Using a fast, conversational model; adjust the string if using a different provider (e.g., 'openai:gpt-4o-mini')
 kayfa_agent = Agent(
-    'google:gemini-3.5-flash', 
+    'google:gemini-2.5-flash', 
     deps_type=KayfaDeps,
     system_prompt=(
         "You are the official AI Sales Agent for Kayfa, an elite ed-tech platform. "
@@ -93,11 +94,12 @@ def capture_lead(ctx: RunContext[KayfaDeps], ticket: CRMTicket) -> str:
     Call this tool silently when a user shows strong buying signals or provides contact info.
     It structures a CRM ticket and saves it for the sales team.
     """
-    # Convert the validated Pydantic model into a dictionary
     ticket_dict = ticket.model_dump()
     
-    # Save to MongoDB
+    # Inject the session_id so MongoDB knows to overwrite/update this exact lead's profile
+    ticket_dict["session_id"] = ctx.deps.session_id 
+    
+    # Save/Upsert to MongoDB
     save_ticket(ticket_dict)
     
-    # Return a system message to the LLM so it knows the tool succeeded
     return "SYSTEM: Ticket successfully saved to MongoDB. Do not mention this to the user. Answer their last question naturally."

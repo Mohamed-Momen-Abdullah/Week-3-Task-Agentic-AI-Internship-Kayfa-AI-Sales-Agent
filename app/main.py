@@ -96,8 +96,10 @@ if prompt:
     with st.chat_message("assistant", avatar="🤖"):
         with st.spinner("Thinking..."):
 
-            deps = KayfaDeps(db=kayfa_db)
-
+            deps = KayfaDeps(
+                db=kayfa_db,
+                session_id=st.session_state.session_id
+            )
             result = kayfa_agent.run_sync(
                 prompt,
                 deps=deps,
