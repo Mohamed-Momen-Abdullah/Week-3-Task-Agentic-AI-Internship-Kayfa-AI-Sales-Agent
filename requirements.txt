@@ -1,0 +1,5 @@
+streamlit
+pydantic-ai
+pymongo
+python-dotenv
+# Add your preferred local vector/search DB later (e.g., chromadb, faiss-cpu)

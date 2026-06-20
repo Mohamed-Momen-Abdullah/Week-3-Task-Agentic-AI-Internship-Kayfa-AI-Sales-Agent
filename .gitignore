@@ -1,0 +1,18 @@
+# Security / Secrets
+.env
+.streamlit/secrets.toml
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
