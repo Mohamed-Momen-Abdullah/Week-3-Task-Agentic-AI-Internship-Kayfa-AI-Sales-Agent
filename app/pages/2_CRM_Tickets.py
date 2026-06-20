@@ -9,6 +9,41 @@ from database.mongo import get_all_tickets
 
 st.set_page_config(page_title="Kayfa CRM Dashboard", page_icon="📊", layout="wide")
 
+import streamlit as st
+
+def check_password():
+    """Returns `True` if the user has the correct password."""
+    
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if st.session_state["password"] == st.secrets["app_password"]:
+            st.session_state["password_correct"] = True
+            # Delete the password from session state for security
+            del st.session_state["password"]  
+        else:
+            st.session_state["password_correct"] = False
+
+    # If the password hasn't been verified yet
+    if "password_correct" not in st.session_state:
+        st.text_input("Please enter the password to access the Kayfa CRM", type="password", on_change=password_entered, key="password")
+        return False
+        
+    # If the user entered the wrong password
+    elif not st.session_state["password_correct"]:
+        st.text_input("Please enter the password to access the Kayfa CRM", type="password", on_change=password_entered, key="password")
+        st.error("😕 Password incorrect.")
+        return False
+        
+    # Password is correct
+    else:
+        return True
+
+# --- MAIN APP EXECUTION ---
+if not check_password():
+    st.stop()  # Do not run anything below this line if password fails
+
+# [The rest of your chat UI and agent logic goes down here as normal]
+
 st.title("📊 CRM Lead Tickets")
 st.markdown("Review captured leads and follow up with prospective learners.")
 
