@@ -5,8 +5,7 @@ import streamlit as st
 def get_theme_colors() -> dict:
     """
     Single source of truth for every color used in the app.
-    Light mode is the default/primary look now — dark mode is the
-    secondary option via the sidebar toggle.
+    Light mode is the default/primary look — dark mode via the sidebar toggle.
     """
     if "theme" not in st.session_state:
         st.session_state.theme = "light"
@@ -70,12 +69,8 @@ def render_text(text: str) -> str:
 def inject_custom_css() -> dict:
     """
     Renders the light/dark toggle in the sidebar and injects CSS that re-skins
-    every native widget — chat input, chat bubbles, buttons, text inputs,
-    metrics, sidebar nav — to a modern look, in both themes.
-
-    Call this FIRST on every page, before require_password(). Returns the
-    active color dict so the page can reuse the same tokens elsewhere
-    (e.g. the ticket cards' inline HTML).
+    every native widget. Call this FIRST on every page, before require_auth().
+    Returns the active color dict so pages can reuse the same tokens in inline HTML.
     """
     if "theme" not in st.session_state:
         st.session_state.theme = "light"
@@ -100,13 +95,9 @@ def inject_custom_css() -> dict:
                 background-color: transparent;
                 box-shadow: none;
             }}
-            /* Hide only the Deploy button — not the whole toolbar, which is
-               where the sidebar's expand/collapse arrow also lives. */
             [data-testid="stDeployButton"] {{
                 display: none;
             }}
-            /* Belt-and-suspenders: make sure the sidebar toggle is never
-               accidentally caught by any rule above. */
             [data-testid="stSidebarCollapsedControl"],
             [data-testid="stSidebarCollapseButton"] {{
                 visibility: visible !important;
@@ -119,8 +110,6 @@ def inject_custom_css() -> dict:
                 color: {c['text']};
             }}
 
-            /* The chat input lives in a fixed bottom bar that sits outside
-               .stApp, so it needs its own background override. */
             div[data-testid="stBottom"],
             div[data-testid="stBottom"] > div,
             div[data-testid="stBottomBlockContainer"],
@@ -142,26 +131,6 @@ def inject_custom_css() -> dict:
             section[data-testid="stSidebar"] * {{
                 color: {c['text']} !important;
             }}
-            [data-testid="stSidebarNav"] {{
-                padding-top: 0.25rem;
-            }}
-            [data-testid="stSidebarNav"] li {{
-                margin: 2px 8px;
-            }}
-            [data-testid="stSidebarNav"] a {{
-                border-radius: 10px !important;
-                padding: 0.5rem 0.9rem !important;
-                font-weight: 500;
-                transition: background-color .15s ease;
-            }}
-            [data-testid="stSidebarNav"] a:hover {{
-                background-color: {c['primary']}15 !important;
-            }}
-            [data-testid="stSidebarNav"] a[aria-current="page"] {{
-                background-color: {c['primary']}20 !important;
-                color: {c['primary']} !important;
-                font-weight: 700;
-            }}
 
             /* ---------- Chat bubbles ---------- */
             [data-testid="stChatMessage"] {{
@@ -177,14 +146,13 @@ def inject_custom_css() -> dict:
             [data-testid="stChatMessage"] span {{
                 color: {c['text']} !important;
             }}
-            /* Tint the user's own messages so the thread reads at a glance */
             [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {{
                 background-color: {c['primary']}0d;
                 border-color: {c['primary']}33;
             }}
 
             /* ---------- Chat input ---------- */
-            [data-testid="stChatInput"], 
+            [data-testid="stChatInput"],
             [data-testid="stChatInput"] > div {{
                 background-color: {c['input_bg']} !important;
                 border-color: {c['card_border']} !important;
@@ -194,8 +162,6 @@ def inject_custom_css() -> dict:
                 border-radius: 14px;
                 box-shadow: 0 1px 2px {c['shadow']};
             }}
-            
-            /* Target the textarea AND Streamlit's internal Base Web wrappers */
             [data-testid="stChatInput"] textarea,
             [data-testid="stChatInput"] div[data-baseweb="textarea"],
             [data-testid="stChatInput"] div[data-baseweb="base-input"] {{
@@ -203,10 +169,10 @@ def inject_custom_css() -> dict:
                 background-color: transparent !important;
                 border: none !important;
             }}
-            
             [data-testid="stChatInput"] textarea::placeholder {{
                 color: {c['text_muted']} !important;
             }}
+
             /* ---------- Buttons ---------- */
             .stButton > button[kind="primary"], .stDownloadButton > button {{
                 background-color: {c['primary']};
@@ -220,7 +186,6 @@ def inject_custom_css() -> dict:
                 background-color: {c['primary_hover']};
                 color: {c['primary_text']};
             }}
-            /* Plain st.button() defaults to "secondary" — used for suggestion chips */
             .stButton > button[kind="secondary"] {{
                 background-color: {c['card_bg']};
                 color: {c['text']};
@@ -236,7 +201,7 @@ def inject_custom_css() -> dict:
                 background-color: {c['primary']}0d;
             }}
 
-            /* ---------- Text inputs (incl. password box) ---------- */
+            /* ---------- Text inputs ---------- */
             .stTextInput input, .stTextArea textarea {{
                 background-color: {c['input_bg']} !important;
                 color: {c['text']} !important;
@@ -275,12 +240,6 @@ def inject_custom_css() -> dict:
             hr {{ border-color: {c['card_border']}; }}
             a {{ color: {c['primary']}; }}
 
-            /* ---------- App bar logo, flush right ---------- */
-            div[data-testid="stHorizontalBlock"] > div[data-testid="column"]:last-child img {{
-                margin-left: auto;
-                display: block;
-            }}
-
             /* ---------- Empty-state hero ---------- */
             .kayfa-hero {{
                 text-align: center;
@@ -307,9 +266,8 @@ def inject_custom_css() -> dict:
 
 def render_header(title: str, subtitle: str = None, logo_width: int = 56) -> None:
     """
-    Slim top app bar: title (+ optional subtitle) on the left, small Kayfa
-    logo flush right, thin divider underneath. Call right after
-    require_password() on every page.
+    Slim top app bar: title (+ optional subtitle) on the left, Kayfa logo
+    flush right, thin divider underneath.
     """
     c = get_theme_colors()
     left, right = st.columns([6, 1])
@@ -329,51 +287,3 @@ def render_header(title: str, subtitle: str = None, logo_width: int = 56) -> Non
         f"<hr style='margin:0.75rem 0 1.5rem 0;border-color:{c['card_border']};'>",
         unsafe_allow_html=True,
     )
-
-
-def require_password(app_title: str = "Kayfa") -> bool:
-    """
-    Modern centered login card. Returns True once the correct password has
-    been entered. Call this AFTER inject_custom_css(); st.stop() immediately
-    if it returns False.
-    """
-    if st.session_state.get("password_correct"):
-        return True
-
-    c = get_theme_colors()
-
-    def _password_entered():
-        if st.session_state["password"] == st.secrets["app_password"]:
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]
-        else:
-            st.session_state["password_correct"] = False
-
-    _, mid, _ = st.columns([1, 1.3, 1])
-    with mid:
-        st.markdown("<div style='height:8vh'></div>", unsafe_allow_html=True)
-        with st.container(border=True):
-            _, logocol, _ = st.columns([1, 1, 1])
-            with logocol:
-                st.image("app/kayfa_logo_light.png", width=72)
-
-            st.markdown(
-                f"<h3 style='text-align:center;margin:0.75rem 0 0.25rem;color:{c['text']};'>Welcome back</h3>"
-                f"<p style='text-align:center;color:{c['text_muted']};margin-bottom:1rem;'>"
-                f"Enter your password to access {app_title}</p>",
-                unsafe_allow_html=True,
-            )
-
-            st.text_input(
-                "Password",
-                type="password",
-                on_change=_password_entered,
-                key="password",
-                label_visibility="collapsed",
-                placeholder="Enter password",
-            )
-
-            if st.session_state.get("password_correct") is False:
-                st.error("Incorrect password — please try again.")
-
-    return bool(st.session_state.get("password_correct"))
