@@ -8,7 +8,6 @@ from pydantic_ai.messages import ModelMessagesTypeAdapter
 
 load_dotenv()
 
-# Prioritize Streamlit secrets, fallback to OS environment, then local host
 try:
     MONGO_URI = st.secrets["MONGO_URI"]
 except (FileNotFoundError, KeyError):
@@ -27,14 +26,12 @@ def get_user(username: str) -> dict | None:
 
 def create_user(username: str, password: str, role: str) -> bool:
     """
-    Create a new user in the `users` collection.
-    Password is stored as a SHA-256 hash — never in plain text.
-    Returns False if the username already exists, True on success.
-    Roles should be either "customer" or "agent".
+    Create a new user. Password stored as SHA-256 hash.
+    Returns False if username already exists, True on success.
     """
     username = username.strip().lower()
     if db.users.find_one({"username": username}):
-        return False  # username already taken
+        return False
     db.users.insert_one({
         "username": username,
         "password_hash": hashlib.sha256(password.encode()).hexdigest(),
@@ -50,20 +47,15 @@ def save_session_state(
     session_id: str,
     ui_messages: list,
     agent_history: list,
-    username: str = None,   # ← NEW: tag the session with the owner's username
+    username: str = None,
 ):
-    """
-    Saves both the UI track and Agent track to MongoDB to survive refreshes.
-    The optional `username` parameter lets us query sessions per user later.
-    """
+    """Saves both the UI track and Agent track to MongoDB."""
     history_dump = ModelMessagesTypeAdapter.dump_python(agent_history)
-
     update_doc = {
         "messages": ui_messages,
         "history": history_dump,
         "last_updated": datetime.now().isoformat(),
     }
-    # Only set username on the document if provided (backwards-compatible)
     if username:
         update_doc["username"] = username
 
@@ -86,22 +78,17 @@ def load_session(session_id: str):
 
 def get_user_sessions(username: str) -> list[dict]:
     """
-    Returns all chat sessions belonging to `username`, newest first.
-    Each item contains:
-      - session_id
-      - last_updated  (ISO string)
-      - preview       (first 60 chars of the user's opening message)
-      - messages      (full list, for the read-only history sidebar)
+    Returns all chat sessions for a user, newest first.
+    Each item: session_id, last_updated, preview, messages.
     """
-    raw_sessions = list(
+    raw = list(
         db.chat_sessions.find(
             {"username": username},
             {"session_id": 1, "messages": 1, "last_updated": 1, "_id": 0},
         ).sort("last_updated", -1)
     )
-
     result = []
-    for s in raw_sessions:
+    for s in raw:
         messages = s.get("messages", [])
         first_user_msg = next(
             (m["content"] for m in messages if m.get("role") == "user"),
@@ -116,13 +103,48 @@ def get_user_sessions(username: str) -> list[dict]:
     return result
 
 
+def delete_session(session_id: str) -> None:
+    """
+    Permanently deletes a chat session and all its individual message turns.
+    Called when the user clicks the delete (🗑) button and confirms.
+    """
+    db.chat_sessions.delete_one({"session_id": session_id})
+    db.messages.delete_many({"session_id": session_id})
+
+
 # ─── TICKETS ──────────────────────────────────────────────────────────────────
 
 def save_ticket(ticket_data: dict):
-    """Injects a timestamp and saves the Pydantic dictionary to MongoDB."""
-    ticket_data["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M")
-    ticket_data["status"] = "Open"
-    db.tickets.insert_one(ticket_data)
+    """
+    Upserts a CRM ticket keyed on session_id.
+    If capture_lead is called multiple times in the same conversation, this
+    overwrites the existing ticket with the latest (most complete) data
+    instead of creating duplicates.
+    Falls back to insert_one only if no session_id is present.
+    """
+    session_id = ticket_data.get("session_id")
+
+    # Always stamp with the latest update time
+    ticket_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    if session_id:
+        # Set timestamp only on first creation, don't overwrite it on updates
+        db.tickets.update_one(
+            {"session_id": session_id},
+            {
+                "$set": ticket_data,
+                "$setOnInsert": {
+                    "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+                    "status": "Open",
+                },
+            },
+            upsert=True,
+        )
+    else:
+        # Fallback for any call without a session_id
+        ticket_data["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        ticket_data["status"] = "Open"
+        db.tickets.insert_one(ticket_data)
 
 
 def get_all_tickets():
@@ -133,7 +155,7 @@ def get_all_tickets():
 # ─── MESSAGES (individual turns) ──────────────────────────────────────────────
 
 def save_chat_turn(session_id: str, role: str, content: str):
-    """Saves a single conversation turn to MongoDB for dual-track memory."""
+    """Saves a single conversation turn for dual-track memory."""
     db.messages.insert_one({
         "session_id": session_id,
         "role": role,
