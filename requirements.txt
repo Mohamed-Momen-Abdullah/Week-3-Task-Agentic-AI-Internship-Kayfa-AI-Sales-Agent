@@ -2,3 +2,5 @@ streamlit
 pydantic-ai
 pymongo
 python-dotenv
+griffe
+pandas

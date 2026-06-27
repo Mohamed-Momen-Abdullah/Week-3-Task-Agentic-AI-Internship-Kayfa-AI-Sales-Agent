@@ -17,6 +17,7 @@ from database.mongo import (
 
 from app.utils import inject_custom_css, render_text, render_header, get_theme_colors
 from app.auth import require_auth, logout, get_current_user
+from pydantic_ai.messages import ModelRequest, ModelResponse
 
 st.set_page_config(
     page_title="Kayfa AI Assistant",
@@ -217,8 +218,8 @@ if prompt:
     with st.chat_message("assistant", avatar="🤖"):
         with st.spinner("Thinking..."):
             deps = KayfaDeps(db=kayfa_db, session_id=st.session_state.session_id)
-            history_window = st.session_state.history[-6:] if len(st.session_state.history) > 6 else st.session_state.history
-            
+            clean_history = [m for m in st.session_state.history if isinstance(m, (ModelRequest, ModelResponse))]
+            history_window = clean_history[-6:] if len(clean_history) > 6 else clean_history            
             start_time = time.time()
             try:
                 result = kayfa_agent.run_sync(

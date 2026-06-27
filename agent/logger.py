@@ -2,21 +2,22 @@ import time
 from datetime import datetime, timezone
 from database.mongo import save_usage_log
 
-
 def log_agent_turn(
     result,
     session_id: str,
     user_id: str,
     latency: float,
-    user_message: str = "",   # ← NEW: capture what the user typed
+    user_message: str = "",
 ):
     """
     Parses a pydantic_ai RunResult to extract tool calls, costs, and the
     response trace. Saves one record to the usage_logs collection.
     """
-    usage = result.usage()
-    req_tokens = usage.request_tokens or 0
-    res_tokens = usage.response_tokens or 0
+    usage = result.usage
+    
+    # 🚨 FIX: Use the correct pydantic-ai token attributes
+    req_tokens = usage.input_tokens or 0
+    res_tokens = usage.output_tokens or 0
 
     input_cost  = (req_tokens / 1_000_000) * 0.15
     output_cost = (res_tokens / 1_000_000) * 0.60
@@ -79,6 +80,6 @@ def log_agent_turn(
         # Trace
         "trace":            trace,
         # Content
-        "user_message":     user_message,      # ← NEW
+        "user_message":     user_message,
         "final_response":   result.output,
     })

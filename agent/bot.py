@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass
 from typing import Optional
 from pydantic_ai import Agent, RunContext
-from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.models.openai import OpenAIChatModel
 from agent.rag import KayfaKnowledgeBase, kayfa_db
 from agent.models import CRMTicket
 from database.mongo import save_ticket
@@ -20,12 +20,11 @@ from openai import AsyncOpenAI
 from pydantic_ai.providers.openai import OpenAIProvider
 
 client = AsyncOpenAI(base_url="https://api.groq.com/openai/v1", api_key=os.environ.get("GROQ_API_KEY"))
-groq_model = OpenAIModel("openai/gpt-oss-120b", provider=OpenAIProvider(openai_client=client))
+groq_model = OpenAIChatModel("openai/gpt-oss-120b", provider=OpenAIProvider(openai_client=client))
 
 kayfa_agent = Agent(
     model=groq_model, 
     deps_type=KayfaDeps,
-    model_settings={'temperature': 0.0}, # Keep it strict, factual, and obedient
     system_prompt=(
         "Role: Kayfa AI Sales Agent. Goal: Persuasive guide for ed-tech enrollments.\n\n"
         "CRITICAL RULES:\n"
@@ -38,13 +37,17 @@ kayfa_agent = Agent(
 )
 
 # 3. Define the Tools (@agent.tool)
+# Replace the existing search_catalog function in agent/bot.py
 
-@kayfa_agent.tool
-def search_catalog(ctx: RunContext[KayfaDeps], queries: List[str], level: Optional[str] = None) -> str:
+@kayfa_agent.tool(name="search_catalog")
+def search_catalog(ctx: RunContext[KayfaDeps], query: str, level: Optional[str] = None) -> str:
     """
     Use this tool to search for Kayfa courses, tracks, or diplomas.
-    CRITICAL: Pass a list of search queries to batch them into a single call and save tokens.
+    Use a single descriptive query string. You may comma-separate terms (e.g. 'data science, python') for batching.
     """
+    # Parse the comma-separated string back into a list
+    queries = [q.strip() for q in query.split(",")]
+    
     mapping_dict = {
         "hacking": "pentest",
         "اختراق": "pentest",
@@ -67,9 +70,9 @@ def search_catalog(ctx: RunContext[KayfaDeps], queries: List[str], level: Option
     all_roadmaps = []
     all_courses = []
     
-    # Loop through the batched queries
-    for query in queries:
-        search_term = query.lower()
+    # Loop using 'q' to avoid shadowing the 'query' parameter
+    for q in queries:
+        search_term = q.lower()
         for key, catalog_term in mapping_dict.items():
             if key in search_term:
                 search_term = catalog_term
@@ -90,7 +93,6 @@ def search_catalog(ctx: RunContext[KayfaDeps], queries: List[str], level: Option
         
     result_lines = ["--- BATCHED SEARCH RESULTS ---"]
     
-    # Format and deduplicate the combined results
     if all_roadmaps:
         result_lines.append("\n[DIPLOMAS & TRACKS]")
         seen = set()
@@ -108,6 +110,8 @@ def search_catalog(ctx: RunContext[KayfaDeps], queries: List[str], level: Option
                 seen.add(c.get('name'))
                 
     return "\n".join(result_lines)
+
+
 
 @kayfa_agent.tool
 def lookup_policies_and_pricing(ctx: RunContext[KayfaDeps], topic: str) -> str:
