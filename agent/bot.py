@@ -8,6 +8,7 @@ from agent.models import CRMTicket
 from database.mongo import save_ticket
 from typing import List, Optional
 
+
 # 1. Define the Dependency Injection class
 @dataclass
 class KayfaDeps:
@@ -20,32 +21,70 @@ from openai import AsyncOpenAI
 from pydantic_ai.providers.openai import OpenAIProvider
 
 client = AsyncOpenAI(base_url="https://api.groq.com/openai/v1", api_key=os.environ.get("GROQ_API_KEY"))
+
+# --- ADD THIS PATCH BLOCK ---
+original_create = client.chat.completions.create
+
+async def patched_create(*args, **kwargs):
+    if "messages" in kwargs:
+        tool_id_to_name = {}
+        for msg in kwargs["messages"]:
+            # 1. Map the tool ID to its name when the assistant invokes it
+            if msg.get("role") == "assistant" and "tool_calls" in msg:
+                for tool_call in msg["tool_calls"]:
+                    if tool_call.get("type") == "function":
+                        tool_id_to_name[tool_call["id"]] = tool_call["function"]["name"]
+            
+            # 2. Inject the required name into the tool response message for Harmony
+            if msg.get("role") == "tool" and "name" not in msg:
+                # Fallback to a safe string just in case the ID isn't found
+                msg["name"] = tool_id_to_name.get(msg.get("tool_call_id"), "kayfa_tool")
+
+    return await original_create(*args, **kwargs)
+
+# Override the client's method with our patched version
+client.chat.completions.create = patched_create
+# -----------------------------
+
 groq_model = OpenAIChatModel("openai/gpt-oss-120b", provider=OpenAIProvider(openai_client=client))
 
 kayfa_agent = Agent(
     model=groq_model, 
     deps_type=KayfaDeps,
     system_prompt=(
-        "Role: Kayfa AI Sales Agent. Goal: Persuasive guide for ed-tech enrollments.\n\n"
-        "CRITICAL RULES:\n"
-        "1. BOUNDARIES: ONLY discuss Kayfa offerings. Deny off-topic/jokes with EXACTLY: 'I am a Kayfa sales agent. I only answer questions regarding our courses.' or Arabic: 'أنا مساعد مبيعات منصة كيف، استطيع فقط مساعدتك والإجابة على استفساراتك بخصوص دوراتنا وبرامجنا التعليمية.'\n"
-        "2. LANGUAGE: Mirror user's exact language and Arabic dialect (Egyptian/Saudi/Syrian). Keep tech terms (SOC, Power BI, Python) in English.\n"
-        "3. SALES MAPPING: Map broad terms (e.g., Cybersecurity -> SOC, AI -> Data Science) to our catalog. Never say 'we don't have it'. Upsell to premium Diplomas.\n"
-        "4. FACTS: NO HALLUCINATIONS. Base all prices/policies strictly on tool data.\n"
-        "5. LEAD CAPTURE: Answer questions and provide value FIRST. DO NOT ask for contact info upfront. ONLY ask for Name, City, and Phone/WhatsApp AFTER the user explicitly shows interest in subscribing or enrolling. Once provided, silently call `capture_lead`. NEVER mention creating a CRM ticket to the user."
+        "You are the Kayfa AI Sales Agent. Your singular goal is to act as a persuasive guide for ed-tech enrollments.\n\n"
+        "<CRITICAL_RULES>\n"
+        "1. STRICT BOUNDARIES: You are STRICTLY FORBIDDEN from discussing topics outside of Kayfa's educational offerings. "
+        "If a user asks for recipes, coding help, general knowledge, or any off-topic subject, you MUST refuse and reply EXACTLY with:\n"
+        "'أنا مساعد مبيعات منصة كيف، استطيع فقط مساعدتك والإجابة على استفساراتك بخصوص دوراتنا وبرامجنا التعليمية.'\n"
+        "2. LANGUAGE: Always mirror the user's exact language and Arabic dialect (Egyptian/Saudi/Syrian). Keep technical terms (SOC, Power BI, Python) in English.\n"
+        "3. SALES MAPPING: Map broad terms (e.g., Cybersecurity -> SOC, AI -> Data Science) to our catalog. Never say 'we don't have it' if there is a close alternative. Always attempt to upsell to premium Diplomas.\n"
+        "4. FACTS: NO HALLUCINATIONS. Base all prices and policies strictly on the data retrieved from your tools.\n"
+        "5. LEAD CAPTURE: Answer questions and provide value FIRST. DO NOT ask for contact info upfront. ONLY ask for Name, City, and Phone/WhatsApp AFTER the user explicitly shows interest in subscribing. Once provided, silently call the `capture_lead` tool. NEVER mention creating a CRM ticket to the user.\n"
+        "</CRITICAL_RULES>"
     )
 )
 
 # 3. Define the Tools (@agent.tool)
 # Replace the existing search_catalog function in agent/bot.py
 
-@kayfa_agent.tool(name="search_catalog")
+@kayfa_agent.tool
 def search_catalog(ctx: RunContext[KayfaDeps], query: str, level: Optional[str] = None) -> str:
     """
     Use this tool to search for Kayfa courses, tracks, or diplomas.
-    Use a single descriptive query string. You may comma-separate terms (e.g. 'data science, python') for batching.
     """
-    # Parse the comma-separated string back into a list
+    # 1. INTERCEPT GENERAL QUERIES FIRST
+    general_terms = ["all", "general", "courses", "what do you offer", "catalog", ""]
+    if query.lower().strip() in general_terms:
+        return (
+            "CATALOG OVERVIEW: We offer comprehensive Diplomas and Courses in: "
+            "1. Cybersecurity (SOC & Pentesting)\n"
+            "2. Data Science & Artificial Intelligence\n"
+            "3. Fullstack Web Development (Programming)\n"
+            "Instruct the user to specify which of these fields they are interested in."
+        )
+
+    # 2. PROCEED WITH NORMAL SEARCH
     queries = [q.strip() for q in query.split(",")]
     
     mapping_dict = {
