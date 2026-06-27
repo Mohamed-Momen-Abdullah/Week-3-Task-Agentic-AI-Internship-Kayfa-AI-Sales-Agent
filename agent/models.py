@@ -3,6 +3,8 @@ from pydantic import BaseModel, Field
 class CRMTicket(BaseModel):
     """Structured CRM Ticket to be captured by the AI agent and saved to MongoDB."""
     
+    model_config = {'title': 'CRMTicket'}
+
     customer_name: str = Field(default="غير معروف", description="Name of the prospective learner (if known, otherwise 'غير معروف'). Write in Arabic.")
     contact_info: str = Field(description="Phone number, WhatsApp, or email. Write exactly as provided.")
     city: str = Field(default="غير معروف", description="City or country of the user. Write in Arabic.")

@@ -69,19 +69,25 @@ class KayfaKnowledgeBase:
     def get_document_content(self, doc_keyword: str) -> str:
         """
         Fetches text from markdown files (Pricing, FAQs, Sales Pitches).
-        Example keywords: 'pricing', 'diploma', 'faq', 'policy'
+        If multiple documents match a broad keyword, it forces the agent to be specific.
         """
         doc_keyword = doc_keyword.lower()
-        matched_content = []
-        
-        for filename, content in self.documents.items():
-            if doc_keyword in filename.lower():
-                matched_content.append(f"--- SOURCE: {filename} ---\n{content}\n")
+        matched_files = [fname for fname in self.documents.keys() if doc_keyword in fname.lower()]
                 
-        if not matched_content:
-            return f"No document found matching '{doc_keyword}'. Please direct the user to support."
+        if not matched_files:
+            return (
+                "SYSTEM CRITICAL ERROR: No document found in the database. "
+                "RULE OVERRIDE: Do not attempt to answer the question using outside knowledge. "
+                "You MUST reply that you do not have the specific details and offer to connect them with a human agent."
+            )
+               
+        # TOKEN OPTIMIZATION: If too many files match, force the agent to narrow it down instead of dumping everything
+        if len(matched_files) > 1 and doc_keyword in ['diploma', 'track', 'course']:
+            return f"SYSTEM ALERT: Multiple documents found ({', '.join(matched_files)}). To save tokens, DO NOT guess. Ask the user to clarify which specific diploma or track they mean, then call this tool again with the specific name."
             
-        return "\n".join(matched_content)
+        # If it's a specific match (or a general policy file), return just that one document
+        content = self.documents[matched_files[0]]
+        return f"--- SOURCE: {matched_files[0]} ---\n{content}\n"
 
 # Initialize a global instance to be imported and used by the agent context
 kayfa_db = KayfaKnowledgeBase()

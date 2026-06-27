@@ -34,16 +34,22 @@ with st.sidebar:
     st.markdown(
         f"<div style='padding:0.5rem 0 1rem;'>"
         f"<span style='font-size:0.8rem;color:{c['text_muted']};text-transform:uppercase;"
-        f"letter-spacing:.05em;'>Sales Agent</span><br>"
+        f"letter-spacing:.05em;'>SALES AGENT</span><br>"
         f"<strong style='font-size:1rem;color:{c['text']};'>👤 {agent['username']}</strong>"
         f"</div>",
         unsafe_allow_html=True,
     )
+    
+    # --- ADD THIS NEW BUTTON ---
+    if st.button("⚡ Token Metrics", width="stretch"):
+        st.switch_page("pages/3_Token_Metrics.py")
+    # ---------------------------
+        
     st.markdown(
         f"<hr style='border-color:{c['card_border']};margin:0.5rem 0 1rem;'>",
         unsafe_allow_html=True,
     )
-    if st.button("🚪  Sign Out", use_container_width=True):
+    if st.button("🚪  Sign Out", width="stretch"):
         logout()
 
 # ── Header ────────────────────────────────────────────────────────────────────

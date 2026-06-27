@@ -20,15 +20,10 @@ db = client.kayfa_crm
 # ─── USER AUTH ────────────────────────────────────────────────────────────────
 
 def get_user(username: str) -> dict | None:
-    """Fetch a user document by username. Returns None if not found."""
     return db.users.find_one({"username": username}, {"_id": 0})
 
 
 def create_user(username: str, password: str, role: str) -> bool:
-    """
-    Create a new user. Password stored as SHA-256 hash.
-    Returns False if username already exists, True on success.
-    """
     username = username.strip().lower()
     if db.users.find_one({"username": username}):
         return False
@@ -43,13 +38,7 @@ def create_user(username: str, password: str, role: str) -> bool:
 
 # ─── CHAT SESSIONS ────────────────────────────────────────────────────────────
 
-def save_session_state(
-    session_id: str,
-    ui_messages: list,
-    agent_history: list,
-    username: str = None,
-):
-    """Saves both the UI track and Agent track to MongoDB."""
+def save_session_state(session_id, ui_messages, agent_history, username=None):
     history_dump = ModelMessagesTypeAdapter.dump_python(agent_history)
     update_doc = {
         "messages": ui_messages,
@@ -58,7 +47,6 @@ def save_session_state(
     }
     if username:
         update_doc["username"] = username
-
     db.chat_sessions.update_one(
         {"session_id": session_id},
         {"$set": update_doc},
@@ -67,7 +55,6 @@ def save_session_state(
 
 
 def load_session(session_id: str):
-    """Reconstructs both memory tracks using the TypeAdapter."""
     record = db.chat_sessions.find_one({"session_id": session_id})
     if record:
         ui_msgs = record.get("messages", [])
@@ -77,10 +64,6 @@ def load_session(session_id: str):
 
 
 def get_user_sessions(username: str) -> list[dict]:
-    """
-    Returns all chat sessions for a user, newest first.
-    Each item: session_id, last_updated, preview, messages.
-    """
     raw = list(
         db.chat_sessions.find(
             {"username": username},
@@ -104,10 +87,6 @@ def get_user_sessions(username: str) -> list[dict]:
 
 
 def delete_session(session_id: str) -> None:
-    """
-    Permanently deletes a chat session and all its individual message turns.
-    Called when the user clicks the delete (🗑) button and confirms.
-    """
     db.chat_sessions.delete_one({"session_id": session_id})
     db.messages.delete_many({"session_id": session_id})
 
@@ -115,20 +94,9 @@ def delete_session(session_id: str) -> None:
 # ─── TICKETS ──────────────────────────────────────────────────────────────────
 
 def save_ticket(ticket_data: dict):
-    """
-    Upserts a CRM ticket keyed on session_id.
-    If capture_lead is called multiple times in the same conversation, this
-    overwrites the existing ticket with the latest (most complete) data
-    instead of creating duplicates.
-    Falls back to insert_one only if no session_id is present.
-    """
     session_id = ticket_data.get("session_id")
-
-    # Always stamp with the latest update time
     ticket_data["last_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M")
-
     if session_id:
-        # Set timestamp only on first creation, don't overwrite it on updates
         db.tickets.update_one(
             {"session_id": session_id},
             {
@@ -141,21 +109,18 @@ def save_ticket(ticket_data: dict):
             upsert=True,
         )
     else:
-        # Fallback for any call without a session_id
         ticket_data["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M")
         ticket_data["status"] = "Open"
         db.tickets.insert_one(ticket_data)
 
 
 def get_all_tickets():
-    """Fetches all CRM tickets, newest first."""
     return list(db.tickets.find().sort("timestamp", -1))
 
 
-# ─── MESSAGES (individual turns) ──────────────────────────────────────────────
+# ─── MESSAGES ─────────────────────────────────────────────────────────────────
 
 def save_chat_turn(session_id: str, role: str, content: str):
-    """Saves a single conversation turn for dual-track memory."""
     db.messages.insert_one({
         "session_id": session_id,
         "role": role,
@@ -165,5 +130,76 @@ def save_chat_turn(session_id: str, role: str, content: str):
 
 
 def get_chat_history(session_id: str):
-    """Retrieves standard chat history for Streamlit UI rendering."""
     return list(db.messages.find({"session_id": session_id}).sort("timestamp", 1))
+
+
+# ─── USAGE LOGS & COST TRACKING ───────────────────────────────────────────────
+
+def save_usage_log(log_data: dict):
+    """Inserts one usage log record per agent turn."""
+    db.usage_logs.insert_one(log_data)
+
+
+def get_all_usage_logs() -> list[dict]:
+    """Returns all usage logs, newest first, without MongoDB _id."""
+    return list(db.usage_logs.find({}, {"_id": 0}).sort("timestamp", -1))
+
+
+def get_cost_by_user() -> list[dict]:
+    """Aggregates total cost and tokens per user, sorted by spend."""
+    pipeline = [
+        {"$group": {
+            "_id":          "$user_id",
+            "total_cost":   {"$sum": "$total_cost"},
+            "total_tokens": {"$sum": {"$add": ["$input_tokens", "$output_tokens"]}},
+            "message_count":{"$sum": 1},
+        }},
+        {"$sort": {"total_cost": -1}},
+    ]
+    return list(db.usage_logs.aggregate(pipeline))
+
+
+def get_daily_cost_trend() -> list[dict]:
+    """Aggregates cost per calendar day for the trend bar chart."""
+    pipeline = [
+        {"$addFields": {
+            "date": {"$substr": ["$timestamp", 0, 10]}   # YYYY-MM-DD
+        }},
+        {"$group": {
+            "_id":        "$date",
+            "daily_cost": {"$sum": "$total_cost"},
+            "messages":   {"$sum": 1},
+        }},
+        {"$sort": {"_id": 1}},
+    ]
+    return list(db.usage_logs.aggregate(pipeline))
+
+
+def get_sessions_with_logs() -> list[dict]:
+    """
+    Returns one summary document per session that has usage logs, newest first.
+    Fields: _id (session_id), user_id, message_count, total_cost,
+            total_tokens, avg_latency, last_timestamp, first_response.
+    Used to populate the Monitor B session dropdown.
+    """
+    pipeline = [
+        {"$group": {
+            "_id":            "$session_id",
+            "user_id":        {"$first": "$user_id"},
+            "message_count":  {"$sum": 1},
+            "total_cost":     {"$sum": "$total_cost"},
+            "total_tokens":   {"$sum": {"$add": ["$input_tokens", "$output_tokens"]}},
+            "avg_latency":    {"$avg": "$latency"},
+            "last_timestamp": {"$max": "$timestamp"},
+            "first_response": {"$first": "$final_response"},
+        }},
+        {"$sort": {"last_timestamp": -1}},
+    ]
+    return list(db.usage_logs.aggregate(pipeline))
+
+
+def get_session_trace(session_id: str) -> list[dict]:
+    """Returns all usage log records for a single session, oldest first (for replay)."""
+    return list(
+        db.usage_logs.find({"session_id": session_id}, {"_id": 0}).sort("timestamp", 1)
+    )

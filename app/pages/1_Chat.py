@@ -12,8 +12,9 @@ from database.mongo import (
     load_session,
     save_session_state,
     get_user_sessions,
-    delete_session,
+    delete_session
 )
+
 from app.utils import inject_custom_css, render_text, render_header, get_theme_colors
 from app.auth import require_auth, logout, get_current_user
 
@@ -23,6 +24,9 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
+import time
+from agent.logger import log_agent_turn
+from app.auth import get_current_user
 
 # ── Auth guard ────────────────────────────────────────────────────────────────
 require_auth(role="customer")
@@ -209,14 +213,18 @@ if prompt:
 
     save_chat_turn(st.session_state.session_id, "user", prompt)
 
+    # Agent turn
     with st.chat_message("assistant", avatar="🤖"):
         with st.spinner("Thinking..."):
             deps = KayfaDeps(db=kayfa_db, session_id=st.session_state.session_id)
+            history_window = st.session_state.history[-6:] if len(st.session_state.history) > 6 else st.session_state.history
+            
+            start_time = time.time()
             try:
                 result = kayfa_agent.run_sync(
                     prompt,
                     deps=deps,
-                    message_history=st.session_state.history,
+                    message_history=history_window,
                 )
             except Exception as e:
                 st.error(f"{type(e).__name__}: {e}")
@@ -224,7 +232,13 @@ if prompt:
                 st.write("body:", getattr(e, "body", None))
                 st.stop()
 
+            latency = time.time() - start_time
             st.markdown(render_text(result.output), unsafe_allow_html=True)
+            
+            # --- PART 2: TRACE & COST LOGGING ---
+            user = get_current_user()
+            user_id = user["username"] if user else "anonymous"
+            log_agent_turn(result, st.session_state.session_id, user_id, latency)
 
     st.session_state.messages.append({"role": "assistant", "content": result.output})
     st.session_state.history += result.new_messages()
