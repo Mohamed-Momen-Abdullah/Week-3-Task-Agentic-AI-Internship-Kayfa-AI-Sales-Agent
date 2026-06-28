@@ -32,7 +32,6 @@ class KayfaKnowledgeBase:
             
         for filepath in DATA_DIR.glob("*.md"):
             with open(filepath, "r", encoding="utf-8") as f:
-                # Store the content using the filename (without .md) as the key
                 docs[filepath.stem] = f.read()
         return docs
 
@@ -42,28 +41,25 @@ class KayfaKnowledgeBase:
         """Searches the JSON catalog for individual courses."""
         query = query.lower()
         results = []
-        
         for course in self.courses:
-            # Search across multiple fields for robustness
-            search_text = f"{course.get('name', '')} {course.get('summary', '')} {course.get('track', '')}".lower()
-            
+            track_text = " ".join(course.get('track', []))
+            search_text = f"{course.get('name', '')} {course.get('summary', '')} {track_text}".lower()
             if query in search_text:
                 if level and course.get('level', '').lower() != level.lower():
                     continue
                 results.append(course)
-                
         return results
 
     def search_roadmaps(self, query: str) -> List[Dict[str, Any]]:
         """Searches the JSON catalog for full roadmaps/diplomas."""
         query = query.lower()
         results = []
-        
         for roadmap in self.roadmaps:
-            search_text = f"{roadmap.get('name', '')} {roadmap.get('skills', '')}".lower()
+            track_text = " ".join(roadmap.get('track', []))
+            skills_text = " ".join(roadmap.get('skills', []))
+            search_text = f"{roadmap.get('name', '')} {skills_text} {track_text}".lower()
             if query in search_text:
                 results.append(roadmap)
-                
         return results
 
     def get_document_content(self, doc_keyword: str) -> str:
@@ -81,13 +77,12 @@ class KayfaKnowledgeBase:
                 "You MUST reply that you do not have the specific details and offer to connect them with a human agent."
             )
                
-        # TOKEN OPTIMIZATION: If too many files match, force the agent to narrow it down instead of dumping everything
         if len(matched_files) > 1 and doc_keyword in ['diploma', 'track', 'course']:
             return f"SYSTEM ALERT: Multiple documents found ({', '.join(matched_files)}). To save tokens, DO NOT guess. Ask the user to clarify which specific diploma or track they mean, then call this tool again with the specific name."
             
-        # If it's a specific match (or a general policy file), return just that one document
         content = self.documents[matched_files[0]]
         return f"--- SOURCE: {matched_files[0]} ---\n{content}\n"
+
 
 # Initialize a global instance to be imported and used by the agent context
 kayfa_db = KayfaKnowledgeBase()
