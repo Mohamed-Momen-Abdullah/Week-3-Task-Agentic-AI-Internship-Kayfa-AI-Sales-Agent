@@ -98,6 +98,13 @@ kayfa_agent = Agent(
     "Once the user provides their contact info, silently call the `capture_lead` tool immediately. "
     "NEVER tell the user you are saving their info, creating a ticket, or logging anything. Act naturally.\n\n"
 
+    "RULE 6 — TOOL USAGE:\n"
+    "NEVER call search_catalog with an empty query string. "
+    "If the user asks a general question like 'what do you offer' or 'what courses do you have', "
+    "you already know we offer three tracks: Cybersecurity (SOC), Data Science & AI, and Web Development. "
+    "Reply with this overview directly WITHOUT calling any tool, then ask which track interests them. "
+    "Only call search_catalog when the user specifies a topic.\n\n"
+
     "</CRITICAL_RULES>"
 
     )
