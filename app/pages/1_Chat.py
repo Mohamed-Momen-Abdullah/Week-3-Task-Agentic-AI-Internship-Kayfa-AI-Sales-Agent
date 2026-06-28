@@ -175,19 +175,20 @@ render_header(
 )
 
 # ── Suggestions (empty state only) ───────────────────────────────────────────
+# ── Suggestions (empty state only) ───────────────────────────────────────────
 SUGGESTIONS = [
-    ("📚", "Available courses", "What courses do you currently offer?"),
-    ("💰", "Pricing & diplomas", "Can you tell me about your course prices and diploma options?"),
-    ("🎓", "Certification", "How does the certification process work?"),
-    ("📅", "Enrollment dates", "When does the next enrollment period start?"),
+    ("📚", "الكورسات المتاحة", "إيه الكورسات اللي بتقدموها حالياً؟"),
+    ("💰", "الأسعار والدبلومات", "ممكن تفاصيل أكتر عن أسعار الكورسات والدبلومات المتاحة؟"),
+    ("🎓", "الشهادات", "إزاي أقدر أحصل على الشهادة بعد الكورس؟"),
+    ("📅", "مواعيد الحجز", "إمتى بتبدأ مواعيد الحجز للدفعة الجديدة؟"),
 ]
 
 if not st.session_state.messages:
     st.markdown(
         """
         <div class="kayfa-hero">
-            <h1>How can I help you today?</h1>
-            <p>Ask about our courses, pricing, diplomas, or anything else about Kayfa.</p>
+            <h1>إزاي أقدر أساعدك النهاردة؟</h1>
+            <p>اسأل عن الكورسات، الأسعار، الدبلومات، أو أي حاجة تانية تخص منصة كيف.</p>
         </div>
         """,
         unsafe_allow_html=True,
