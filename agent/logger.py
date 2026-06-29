@@ -13,11 +13,15 @@ def log_agent_turn(
     Parses a pydantic_ai RunResult to extract tool calls, costs, and the
     response trace. Saves one record to the usage_logs collection.
     """
+    if result.usage is None:
+        req_tokens = 0
+        res_tokens = 0
+    else:
+        req_tokens = getattr(usage, "input_tokens", 0) or 0
+        res_tokens = getattr(usage, "output_tokens", 0) or 0
     usage = result.usage
-    
-    # 🚨 FIX: Use the correct pydantic-ai token attributes
-    req_tokens = usage.input_tokens or 0
-    res_tokens = usage.output_tokens or 0
+    req_tokens = getattr(usage, "input_tokens", 0) or 0
+    res_tokens = getattr(usage, "output_tokens", 0) or 0
 
     input_cost  = (req_tokens / 1_000_000) * 0.15
     output_cost = (res_tokens / 1_000_000) * 0.60
