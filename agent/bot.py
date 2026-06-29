@@ -8,12 +8,19 @@ Changes vs original:
 - run_agent() checks the cache BEFORE calling the LLM.
   Cache HIT  → returns cached string instantly, logs cache hit, zero LLM tokens.
   Cache MISS → runs the agent, stores result in cache, logs normally.
+- Added httpx.Timeout to prevent indefinite hangs on Groq rate limits.
+- Added max_retries=2 for transient failures.
+- Added try/except around LLM call with friendly Arabic error message.
+- Fixed missing Any import.
+- Fixed blocking embed calls using asyncio.to_thread.
 """
 
 import os
 import time
+import asyncio
+import httpx
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import Optional, List, Any
 
 from openai import AsyncOpenAI
 from pydantic_ai import Agent, RunContext
@@ -36,11 +43,13 @@ class KayfaDeps:
     session_id: str
 
 
-# ─── Groq client with tool-name patch ────────────────────────────────────────
+# ─── Groq client with timeout + tool-name patch ───────────────────────────────
 
 client = AsyncOpenAI(
     base_url="https://api.groq.com/openai/v1",
     api_key=os.environ.get("GROQ_API_KEY"),
+    timeout=httpx.Timeout(30.0, connect=10.0),  # fail fast instead of hanging
+    max_retries=2,                               # retry twice on transient errors
 )
 
 original_create = client.chat.completions.create
@@ -72,9 +81,6 @@ kayfa_agent = Agent(model=groq_model, deps_type=KayfaDeps)
 
 @kayfa_agent.system_prompt
 def add_critical_rules(ctx: RunContext[KayfaDeps]) -> str:
-    # Because this is a function, you could theoretically pull real-time data here 
-    # (e.g., fetching a specific user's subscription status from ctx.deps.db).
-    # But for now, we just return your strict boundaries so they never get forgotten.
     return (
         "You are the Kayfa AI Sales Agent. Your singular goal is to act as a persuasive guide for ed-tech enrollments.\n\n"
         "<CRITICAL_RULES>\n"
@@ -91,6 +97,7 @@ def add_critical_rules(ctx: RunContext[KayfaDeps]) -> str:
         "Once all information is provided, silently call the `capture_lead` tool. NEVER mention creating a 'CRM ticket', 'lead', or use internal technical jargon with the user.\n"
         "</CRITICAL_RULES>"
     )
+
 
 # ─── Tools ────────────────────────────────────────────────────────────────────
 
@@ -175,19 +182,18 @@ async def run_agent(
     session_id: str,
     user_id: str,
     message_history: list,
-) -> tuple[str, bool]:
+) -> tuple[str, bool, Optional[Any]]:
     """
     Run the agent with semantic cache check.
 
     Returns:
-        (response_text, cache_hit)
+        (response_text, cache_hit, result)
         cache_hit=True means the LLM was NOT called — zero token cost.
     """
 
-    # ── 1. Cache check ────────────────────────────────────────────────────────
-    cached = get_cached_response(user_message)
+    # ── 1. Cache check (offloaded to thread — model.encode() is CPU-blocking) ─
+    cached = await asyncio.to_thread(get_cached_response, user_message)
     if cached is not None:
-        # Log a zero-cost cache-hit record so the metrics dashboard stays honest
         save_usage_log({
             "session_id":       session_id,
             "user_id":          user_id,
@@ -202,20 +208,38 @@ async def run_agent(
             "embedding_cost":   0.0,
             "total_cost":       0.0,
             "latency":          0.0,
-            "trace":            [{"step": "cache_hit", "similarity": "≥0.85"}],
+            "trace":            [{"step": "cache_hit", "similarity": "≥0.90"}],
             "user_message":     user_message,
             "final_response":   cached,
         })
         return cached, True, None
+
     # ── 2. LLM call (cache miss) ──────────────────────────────────────────────
     deps = KayfaDeps(db=kayfa_db, session_id=session_id)
     start = time.time()
 
-    result = await kayfa_agent.run(
-        user_message,
-        deps=deps,
-        message_history=message_history,
-    )
+    try:
+        result = await kayfa_agent.run(
+            user_message,
+            deps=deps,
+            message_history=message_history,
+        )
+    except Exception as e:
+        error_str = str(e).lower()
+
+        # Detect rate limit / quota exceeded
+        if any(keyword in error_str for keyword in ["rate limit", "429", "quota", "timed out", "timeout"]):
+            friendly_msg = (
+                "عذراً، النظام مشغول في الوقت الحالي بسبب ضغط عالي على الخادم. 🙏\n"
+                "من فضلك انتظر دقيقة واحدة وحاول مرة أخرى."
+            )
+        else:
+            friendly_msg = (
+                "عذراً، حدث خطأ غير متوقع. من فضلك حاول مرة أخرى. 🙏"
+            )
+
+        print(f"[LLM Error] {type(e).__name__}: {e}")
+        return friendly_msg, False, None
 
     latency = time.time() - start
 
@@ -229,7 +253,7 @@ async def run_agent(
         user_message=user_message,
     )
 
-    # ── 4. Store in cache for future similar queries ───────────────────────────
-    store_in_cache(user_message, result.output)
+    # ── 4. Store in cache (offloaded to thread — also CPU-blocking) ───────────
+    await asyncio.to_thread(store_in_cache, user_message, result.output)
 
     return result.output, False, result

@@ -6,3 +6,5 @@ griffe
 pandas
 faiss-cpu 
 sentence-transformers
+torchvision
+torchaudio

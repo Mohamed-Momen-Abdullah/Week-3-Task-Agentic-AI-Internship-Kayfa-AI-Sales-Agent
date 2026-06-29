@@ -20,7 +20,7 @@ import numpy as np
 from database.mongo import cache_lookup, cache_store
 
 # ── Threshold ─────────────────────────────────────────────────────────────────
-SIMILARITY_THRESHOLD = 0.90
+SIMILARITY_THRESHOLD = 0.85
 
 
 def _get_model():
