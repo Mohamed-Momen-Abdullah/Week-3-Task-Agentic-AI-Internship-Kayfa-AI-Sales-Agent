@@ -1,0 +1,820 @@
+[
+  {
+    "text": "Course: Business Statistics\nLevel: intermediate\nTrack: data_science, data_analysis\nSummary: A comprehensive course covering business statistics including descriptive statistics, probability, inferential statistics, regression analysis, and hypothesis testing. Taught by Prof. Mostafa Elhosseini.",
+    "type": "course",
+    "name": "Business Statistics",
+    "level": "intermediate",
+    "track": "data_science, data_analysis",
+    "summary": "A comprehensive course covering business statistics including descriptive statistics, probability, inferential statistics, regression analysis, and hypothesis testing. Taught by Prof. Mostafa Elhosseini."
+  },
+  {
+    "text": "Course: MS SQL Server Programming\nLevel: intermediate\nTrack: data_science, data_analysis, backend\nSummary: Deep dive into MS SQL Server including writing queries, stored procedures, and managing enterprise data. Taught by Hagar Ibrahiem.",
+    "type": "course",
+    "name": "MS SQL Server Programming",
+    "level": "intermediate",
+    "track": "data_science, data_analysis, backend",
+    "summary": "Deep dive into MS SQL Server including writing queries, stored procedures, and managing enterprise data. Taught by Hagar Ibrahiem."
+  },
+  {
+    "text": "Course: Data Visualization by Power BI\nLevel: beginner\nTrack: data_science, data_analysis\nSummary: Learn to build professional dashboards with Power BI, covering data modeling, DAX formulas, and interactive visualizations. Taught by Eman Raslan.",
+    "type": "course",
+    "name": "Data Visualization by Power BI",
+    "level": "beginner",
+    "track": "data_science, data_analysis",
+    "summary": "Learn to build professional dashboards with Power BI, covering data modeling, DAX formulas, and interactive visualizations. Taught by Eman Raslan."
+  },
+  {
+    "text": "Course: Network and Security Fundamentals\nLevel: beginner\nTrack: cybersecurity, soc\nSummary: Covers network security fundamentals including the OSI model, subnetting, firewalls, and core security concepts. Taught by Ahmed Shalaby.",
+    "type": "course",
+    "name": "Network and Security Fundamentals",
+    "level": "beginner",
+    "track": "cybersecurity, soc",
+    "summary": "Covers network security fundamentals including the OSI model, subnetting, firewalls, and core security concepts. Taught by Ahmed Shalaby."
+  },
+  {
+    "text": "Course: HTML\nLevel: beginner\nTrack: web_development, frontend\nSummary: A complete course on HTML covering structure, elements, forms, semantic HTML, and best practices for building web pages. Taught by Mohamed Ali.",
+    "type": "course",
+    "name": "HTML",
+    "level": "beginner",
+    "track": "web_development, frontend",
+    "summary": "A complete course on HTML covering structure, elements, forms, semantic HTML, and best practices for building web pages. Taught by Mohamed Ali."
+  },
+  {
+    "text": "Course: Fundamentals of Graphic Design\nLevel: beginner\nTrack: graphic_design, creative_arts\nSummary: Introduction to graphic design fundamentals covering design principles, color theory, typography, and layout. Taught by Heba Hashem Abdeen.",
+    "type": "course",
+    "name": "Fundamentals of Graphic Design",
+    "level": "beginner",
+    "track": "graphic_design, creative_arts",
+    "summary": "Introduction to graphic design fundamentals covering design principles, color theory, typography, and layout. Taught by Heba Hashem Abdeen."
+  },
+  {
+    "text": "Course: Microsoft Windows Active Directory\nLevel: intermediate\nTrack: cybersecurity, soc, system_administration\nSummary: Comprehensive training on Windows Active Directory including Group Policy Objects (GPO), user management, and enterprise directory services. Taught by Abdelbaky Shehata.",
+    "type": "course",
+    "name": "Microsoft Windows Active Directory",
+    "level": "intermediate",
+    "track": "cybersecurity, soc, system_administration",
+    "summary": "Comprehensive training on Windows Active Directory including Group Policy Objects (GPO), user management, and enterprise directory services. Taught by Abdelbaky Shehata."
+  },
+  {
+    "text": "Course: Linux Fundamentals\nLevel: beginner\nTrack: cybersecurity, soc, system_administration\nSummary: Covers Linux command line interface (CLI), file system navigation, permissions, shell scripting, and system administration basics. Taught by Yehia Kandeel.",
+    "type": "course",
+    "name": "Linux Fundamentals",
+    "level": "beginner",
+    "track": "cybersecurity, soc, system_administration",
+    "summary": "Covers Linux command line interface (CLI), file system navigation, permissions, shell scripting, and system administration basics. Taught by Yehia Kandeel."
+  },
+  {
+    "text": "Course: Splunk SIEM Case Studies\nLevel: advanced\nTrack: cybersecurity, soc\nSummary: Advanced Splunk SIEM training through real-world case studies, covering SPL queries, dashboards, and security event analysis. Taught by Motasem Hamdan.",
+    "type": "course",
+    "name": "Splunk SIEM Case Studies",
+    "level": "advanced",
+    "track": "cybersecurity, soc",
+    "summary": "Advanced Splunk SIEM training through real-world case studies, covering SPL queries, dashboards, and security event analysis. Taught by Motasem Hamdan."
+  },
+  {
+    "text": "Course: How AI & Chat GPT Work\nLevel: beginner\nTrack: artificial_intelligence\nSummary: An introductory course explaining how Artificial Intelligence and ChatGPT work, covering AI fundamentals, language models, and practical AI applications. Taught by Mohammad Thabet.",
+    "type": "course",
+    "name": "How AI & Chat GPT Work",
+    "level": "beginner",
+    "track": "artificial_intelligence",
+    "summary": "An introductory course explaining how Artificial Intelligence and ChatGPT work, covering AI fundamentals, language models, and practical AI applications. Taught by Mohammad Thabet."
+  },
+  {
+    "text": "Course: Introduction to JavaScript\nLevel: beginner\nTrack: web_development, frontend\nSummary: Fundamentals of JavaScript programming language covering variables, functions, DOM manipulation, events, and modern ES6+ features. Taught by Mohamed Ali.",
+    "type": "course",
+    "name": "Introduction to JavaScript",
+    "level": "beginner",
+    "track": "web_development, frontend",
+    "summary": "Fundamentals of JavaScript programming language covering variables, functions, DOM manipulation, events, and modern ES6+ features. Taught by Mohamed Ali."
+  },
+  {
+    "text": "Course: Introduction to TypeScript\nLevel: beginner\nTrack: web_development, frontend\nSummary: Learn TypeScript fundamentals including types, interfaces, generics, and how to build type-safe JavaScript applications. Taught by Ahmed Saber.",
+    "type": "course",
+    "name": "Introduction to TypeScript",
+    "level": "beginner",
+    "track": "web_development, frontend",
+    "summary": "Learn TypeScript fundamentals including types, interfaces, generics, and how to build type-safe JavaScript applications. Taught by Ahmed Saber."
+  },
+  {
+    "text": "Course: Introduction to Marketing\nLevel: beginner\nTrack: marketing, business\nSummary: An introductory course covering marketing fundamentals, digital marketing strategies, and marketing principles. Taught by Walid Saed.",
+    "type": "course",
+    "name": "Introduction to Marketing",
+    "level": "beginner",
+    "track": "marketing, business",
+    "summary": "An introductory course covering marketing fundamentals, digital marketing strategies, and marketing principles. Taught by Walid Saed."
+  },
+  {
+    "text": "Course: Career Planning\nLevel: beginner\nTrack: career_development\nSummary: A short course on career planning covering CV writing, interview preparation, and career path strategies. Taught by Mariam Elgaby.",
+    "type": "course",
+    "name": "Career Planning",
+    "level": "beginner",
+    "track": "career_development",
+    "summary": "A short course on career planning covering CV writing, interview preparation, and career path strategies. Taught by Mariam Elgaby."
+  },
+  {
+    "text": "Course: Python Basics for Data Science\nLevel: beginner\nTrack: data_science, programming\nSummary: Deep dive into Python programming for data science including data structures, OOP concepts, and working with libraries like Pandas and NumPy.",
+    "type": "course",
+    "name": "Python Basics for Data Science",
+    "level": "beginner",
+    "track": "data_science, programming",
+    "summary": "Deep dive into Python programming for data science including data structures, OOP concepts, and working with libraries like Pandas and NumPy."
+  },
+  {
+    "text": "Course: Data Analysis Using Python for Data Science\nLevel: intermediate\nTrack: data_science\nSummary: Learn data cleaning, scraping, and analysis using Python with Pandas and NumPy. Covers real-world data analysis workflows.",
+    "type": "course",
+    "name": "Data Analysis Using Python for Data Science",
+    "level": "intermediate",
+    "track": "data_science",
+    "summary": "Learn data cleaning, scraping, and analysis using Python with Pandas and NumPy. Covers real-world data analysis workflows."
+  },
+  {
+    "text": "Course: Machine Learning and Predictive Modeling for Data Science\nLevel: advanced\nTrack: data_science, machine_learning\nSummary: Build predictive models using Supervised and Unsupervised learning, Neural Networks, and Regression algorithms for data science applications.",
+    "type": "course",
+    "name": "Machine Learning and Predictive Modeling for Data Science",
+    "level": "advanced",
+    "track": "data_science, machine_learning",
+    "summary": "Build predictive models using Supervised and Unsupervised learning, Neural Networks, and Regression algorithms for data science applications."
+  },
+  {
+    "text": "Course: Introduction to Data Science\nLevel: beginner\nTrack: data_science\nSummary: Introduction to the field of data science covering key concepts, tools, and career paths. Taught by Osama Salem (CEO of Etica Technology).",
+    "type": "course",
+    "name": "Introduction to Data Science",
+    "level": "beginner",
+    "track": "data_science",
+    "summary": "Introduction to the field of data science covering key concepts, tools, and career paths. Taught by Osama Salem (CEO of Etica Technology)."
+  },
+  {
+    "text": "Course: Advanced Excel for Data Science\nLevel: intermediate\nTrack: data_science, data_analysis\nSummary: Advanced Excel skills including Pivot Tables, DAX formulas, and Power Query for data analysis and business intelligence.",
+    "type": "course",
+    "name": "Advanced Excel for Data Science",
+    "level": "intermediate",
+    "track": "data_science, data_analysis",
+    "summary": "Advanced Excel skills including Pivot Tables, DAX formulas, and Power Query for data analysis and business intelligence."
+  },
+  {
+    "text": "Course: Data Science Career Development\nLevel: beginner\nTrack: data_science, career_development\nSummary: Professional skills module covering CV writing, interview simulations, and career path planning specifically for data science careers.",
+    "type": "course",
+    "name": "Data Science Career Development",
+    "level": "beginner",
+    "track": "data_science, career_development",
+    "summary": "Professional skills module covering CV writing, interview simulations, and career path planning specifically for data science careers."
+  },
+  {
+    "text": "Course: Data Science Career Center\nLevel: beginner\nTrack: data_science, career_development\nSummary: Career center resources and guidance for data science professionals including portfolio building and job placement support.",
+    "type": "course",
+    "name": "Data Science Career Center",
+    "level": "beginner",
+    "track": "data_science, career_development",
+    "summary": "Career center resources and guidance for data science professionals including portfolio building and job placement support."
+  },
+  {
+    "text": "Course: Final Project for Data Science\nLevel: advanced\nTrack: data_science\nSummary: Capstone project for the Data Science track where students solve real business problems and build their professional portfolio.",
+    "type": "course",
+    "name": "Final Project for Data Science",
+    "level": "advanced",
+    "track": "data_science",
+    "summary": "Capstone project for the Data Science track where students solve real business problems and build their professional portfolio."
+  },
+  {
+    "text": "Course: Live Session - All About Data Science\nLevel: beginner\nTrack: data_science\nSummary: Live interactive sessions covering all aspects of data science. 9 videos, 3 hours 19 minutes of content. Taught by Osama Salem.",
+    "type": "course",
+    "name": "Live Session - All About Data Science",
+    "level": "beginner",
+    "track": "data_science",
+    "summary": "Live interactive sessions covering all aspects of data science. 9 videos, 3 hours 19 minutes of content. Taught by Osama Salem."
+  },
+  {
+    "text": "Course: Introduction to SOC Analysis and Management\nLevel: beginner\nTrack: cybersecurity, soc\nSummary: Introduction to Security Operations Center analysis and management, covering the Cyber Kill Chain, Incident Response lifecycles, and defensive operations.",
+    "type": "course",
+    "name": "Introduction to SOC Analysis and Management",
+    "level": "beginner",
+    "track": "cybersecurity, soc",
+    "summary": "Introduction to Security Operations Center analysis and management, covering the Cyber Kill Chain, Incident Response lifecycles, and defensive operations."
+  },
+  {
+    "text": "Course: Splunk SIEM\nLevel: intermediate\nTrack: cybersecurity, soc\nSummary: Deep dive into Splunk SIEM covering SPL queries, dashboards, security event correlation, and alerting for Security Operations Centers.",
+    "type": "course",
+    "name": "Splunk SIEM",
+    "level": "intermediate",
+    "track": "cybersecurity, soc",
+    "summary": "Deep dive into Splunk SIEM covering SPL queries, dashboards, security event correlation, and alerting for Security Operations Centers."
+  },
+  {
+    "text": "Course: IBM QRadar\nLevel: intermediate\nTrack: cybersecurity, soc\nSummary: Comprehensive IBM QRadar training covering AQL queries, offense management, and SIEM operations for enterprise security monitoring.",
+    "type": "course",
+    "name": "IBM QRadar",
+    "level": "intermediate",
+    "track": "cybersecurity, soc",
+    "summary": "Comprehensive IBM QRadar training covering AQL queries, offense management, and SIEM operations for enterprise security monitoring."
+  },
+  {
+    "text": "Course: CSS\nLevel: beginner\nTrack: web_development, frontend\nSummary: Complete CSS course covering selectors, layout (Flexbox, Grid), responsive design, animations, and modern CSS techniques.",
+    "type": "course",
+    "name": "CSS",
+    "level": "beginner",
+    "track": "web_development, frontend",
+    "summary": "Complete CSS course covering selectors, layout (Flexbox, Grid), responsive design, animations, and modern CSS techniques."
+  },
+  {
+    "text": "Course: ECMAScript and Modern JavaScript\nLevel: intermediate\nTrack: web_development, frontend\nSummary: Advanced JavaScript covering ES6+ features including arrow functions, destructuring, async/await, modules, and modern development patterns.",
+    "type": "course",
+    "name": "ECMAScript and Modern JavaScript",
+    "level": "intermediate",
+    "track": "web_development, frontend",
+    "summary": "Advanced JavaScript covering ES6+ features including arrow functions, destructuring, async/await, modules, and modern development patterns."
+  },
+  {
+    "text": "Course: Introduction to Object Oriented Programming (OOP) using C#\nLevel: intermediate\nTrack: web_development, backend\nSummary: Learn OOP principles using C# including classes, inheritance, polymorphism, interfaces, and design patterns.",
+    "type": "course",
+    "name": "Introduction to Object Oriented Programming (OOP) using C#",
+    "level": "intermediate",
+    "track": "web_development, backend",
+    "summary": "Learn OOP principles using C# including classes, inheritance, polymorphism, interfaces, and design patterns."
+  },
+  {
+    "text": "Course: Fundamentals of Database for .NET Full Stack Development\nLevel: intermediate\nTrack: web_development, backend\nSummary: Database fundamentals for .NET developers covering relational database design, Entity Framework, and database operations.",
+    "type": "course",
+    "name": "Fundamentals of Database for .NET Full Stack Development",
+    "level": "intermediate",
+    "track": "web_development, backend",
+    "summary": "Database fundamentals for .NET developers covering relational database design, Entity Framework, and database operations."
+  },
+  {
+    "text": "Course: Fundamentals of Motion Graphics\nLevel: beginner\nTrack: creative_arts, motion_graphics\nSummary: Introduction to motion graphics covering animation principles, After Effects basics, and creating animated compositions.",
+    "type": "course",
+    "name": "Fundamentals of Motion Graphics",
+    "level": "beginner",
+    "track": "creative_arts, motion_graphics",
+    "summary": "Introduction to motion graphics covering animation principles, After Effects basics, and creating animated compositions."
+  },
+  {
+    "text": "Course: CapCut Video Editing\nLevel: beginner\nTrack: creative_arts, video_editing\nSummary: Learn video editing using CapCut including cutting, transitions, effects, text overlays, and exporting professional videos.",
+    "type": "course",
+    "name": "CapCut Video Editing",
+    "level": "beginner",
+    "track": "creative_arts, video_editing",
+    "summary": "Learn video editing using CapCut including cutting, transitions, effects, text overlays, and exporting professional videos."
+  },
+  {
+    "text": "Course: Python Basics for Data Analysis\nLevel: beginner\nTrack: data_analysis, programming\nSummary: Python programming fundamentals tailored for data analysis, covering data structures, libraries, and practical data manipulation.",
+    "type": "course",
+    "name": "Python Basics for Data Analysis",
+    "level": "beginner",
+    "track": "data_analysis, programming",
+    "summary": "Python programming fundamentals tailored for data analysis, covering data structures, libraries, and practical data manipulation."
+  },
+  {
+    "text": "Course: Introduction to Data Analysis\nLevel: beginner\nTrack: data_analysis\nSummary: Introduction to data analysis concepts, methodologies, and tools used in the field.",
+    "type": "course",
+    "name": "Introduction to Data Analysis",
+    "level": "beginner",
+    "track": "data_analysis",
+    "summary": "Introduction to data analysis concepts, methodologies, and tools used in the field."
+  },
+  {
+    "text": "Course: Data Analysis Using Python\nLevel: intermediate\nTrack: data_analysis\nSummary: Practical data analysis using Python with Pandas and NumPy, covering data cleaning, transformation, and exploratory data analysis.",
+    "type": "course",
+    "name": "Data Analysis Using Python",
+    "level": "intermediate",
+    "track": "data_analysis",
+    "summary": "Practical data analysis using Python with Pandas and NumPy, covering data cleaning, transformation, and exploratory data analysis."
+  },
+  {
+    "text": "Course: Final Project for Data Analysis\nLevel: intermediate\nTrack: data_analysis\nSummary: Capstone project for the Data Analysis track where students apply their skills to solve real business analysis problems.",
+    "type": "course",
+    "name": "Final Project for Data Analysis",
+    "level": "intermediate",
+    "track": "data_analysis",
+    "summary": "Capstone project for the Data Analysis track where students apply their skills to solve real business analysis problems."
+  },
+  {
+    "text": "Course: Artificial Intelligence Tools\nLevel: beginner\nTrack: artificial_intelligence\nSummary: Exploration of modern AI tools and platforms, covering practical applications of AI technologies in various domains.",
+    "type": "course",
+    "name": "Artificial Intelligence Tools",
+    "level": "beginner",
+    "track": "artificial_intelligence",
+    "summary": "Exploration of modern AI tools and platforms, covering practical applications of AI technologies in various domains."
+  },
+  {
+    "text": "Course: Python Basics for AI\nLevel: beginner\nTrack: artificial_intelligence, programming\nSummary: Python programming fundamentals tailored for AI development, covering essential libraries and programming patterns used in AI.",
+    "type": "course",
+    "name": "Python Basics for AI",
+    "level": "beginner",
+    "track": "artificial_intelligence, programming",
+    "summary": "Python programming fundamentals tailored for AI development, covering essential libraries and programming patterns used in AI."
+  },
+  {
+    "text": "Course: SOC Tips\nLevel: beginner\nTrack: cybersecurity, soc\nSummary: 35 short videos with tips and tricks for Security Operations Center analysts. Covers monitoring, analysis techniques, and best practices.",
+    "type": "course",
+    "name": "SOC Tips",
+    "level": "beginner",
+    "track": "cybersecurity, soc",
+    "summary": "35 short videos with tips and tricks for Security Operations Center analysts. Covers monitoring, analysis techniques, and best practices."
+  },
+  {
+    "text": "Course: Programming Tips\nLevel: beginner\nTrack: programming\nSummary: 30 short videos covering programming tips, tricks, and best practices including HTML, CSS, and JavaScript tips.",
+    "type": "course",
+    "name": "Programming Tips",
+    "level": "beginner",
+    "track": "programming",
+    "summary": "30 short videos covering programming tips, tricks, and best practices including HTML, CSS, and JavaScript tips."
+  },
+  {
+    "text": "Course: AI Tips\nLevel: beginner\nTrack: artificial_intelligence\nSummary: 5 short videos covering tips on AI tools and concepts including practical applications of AI and ChatGPT.",
+    "type": "course",
+    "name": "AI Tips",
+    "level": "beginner",
+    "track": "artificial_intelligence",
+    "summary": "5 short videos covering tips on AI tools and concepts including practical applications of AI and ChatGPT."
+  },
+  {
+    "text": "Course: Data Science Tips\nLevel: beginner\nTrack: data_science\nSummary: 4 short videos covering data science tips including Excel for data analysis and statistics fundamentals.",
+    "type": "course",
+    "name": "Data Science Tips",
+    "level": "beginner",
+    "track": "data_science",
+    "summary": "4 short videos covering data science tips including Excel for data analysis and statistics fundamentals."
+  },
+  {
+    "text": "Course: General Courses Tips\nLevel: beginner\nTrack: general\nSummary: 4 short videos covering general educational tips including marketing introduction tips.",
+    "type": "course",
+    "name": "General Courses Tips",
+    "level": "beginner",
+    "track": "general",
+    "summary": "4 short videos covering general educational tips including marketing introduction tips."
+  },
+  {
+    "text": "Course: QRadar Professional Pathway Tips\nLevel: intermediate\nTrack: cybersecurity, soc\nSummary: 6 short videos covering QRadar SIEM tips and professional pathway guidance. Taught by Hatem Metwally.",
+    "type": "course",
+    "name": "QRadar Professional Pathway Tips",
+    "level": "intermediate",
+    "track": "cybersecurity, soc",
+    "summary": "6 short videos covering QRadar SIEM tips and professional pathway guidance. Taught by Hatem Metwally."
+  },
+  {
+    "text": "Course: Network and Security Fundamentals Tips\nLevel: beginner\nTrack: cybersecurity\nSummary: 7 short videos covering network and security fundamentals tips. Taught by Ahmed Shalaby.",
+    "type": "course",
+    "name": "Network and Security Fundamentals Tips",
+    "level": "beginner",
+    "track": "cybersecurity",
+    "summary": "7 short videos covering network and security fundamentals tips. Taught by Ahmed Shalaby."
+  },
+  {
+    "text": "Course: HTML Tips\nLevel: beginner\nTrack: web_development, frontend\nSummary: 8 short videos covering HTML tips and best practices. Taught by Mohamed Ali.",
+    "type": "course",
+    "name": "HTML Tips",
+    "level": "beginner",
+    "track": "web_development, frontend",
+    "summary": "8 short videos covering HTML tips and best practices. Taught by Mohamed Ali."
+  },
+  {
+    "text": "Course: Free Sessions\nLevel: beginner\nTrack: general\nSummary: 45 free live sessions on various topics including data science, career development, and technology trends. 12 hours 5 minutes of content.",
+    "type": "course",
+    "name": "Free Sessions",
+    "level": "beginner",
+    "track": "general",
+    "summary": "45 free live sessions on various topics including data science, career development, and technology trends. 12 hours 5 minutes of content."
+  },
+  {
+    "text": "Course: Live Session - SOC\nLevel: intermediate\nTrack: cybersecurity, soc\nSummary: Live interactive session covering SOC analysis topics, tools, and practical security scenarios.",
+    "type": "course",
+    "name": "Live Session - SOC",
+    "level": "intermediate",
+    "track": "cybersecurity, soc",
+    "summary": "Live interactive session covering SOC analysis topics, tools, and practical security scenarios."
+  },
+  {
+    "text": "Diploma/Roadmap: Data Science Track\nDuration: 75 hours 31 minutes\nTrack: data_science\nSkills: Python Programming, Data Cleaning, Data Scraping, Data Analysis, Business Statistics, Power BI Dashboards, SQL Server, Machine Learning, Supervised Learning, Unsupervised Learning, Neural Networks, Regression, Advanced Excel, Pivot Tables, DAX, Power Query",
+    "type": "roadmap",
+    "name": "Data Science Track",
+    "duration": "75 hours 31 minutes",
+    "track": "data_science",
+    "skills": "Python Programming, Data Cleaning, Data Scraping, Data Analysis, Business Statistics, Power BI Dashboards, SQL Server, Machine Learning, Supervised Learning, Unsupervised Learning, Neural Networks, Regression, Advanced Excel, Pivot Tables, DAX, Power Query"
+  },
+  {
+    "text": "Diploma/Roadmap: Security Operations Center (SOC) Track\nDuration: 44 hours 52 minutes\nTrack: cybersecurity, soc\nSkills: Network Security, Linux Administration, Windows Active Directory, SIEM Operations, Splunk SPL, IBM QRadar AQL, Incident Response, Threat Hunting, Digital Forensics, Cyber Kill Chain, Offense Management",
+    "type": "roadmap",
+    "name": "Security Operations Center (SOC) Track",
+    "duration": "44 hours 52 minutes",
+    "track": "cybersecurity, soc",
+    "skills": "Network Security, Linux Administration, Windows Active Directory, SIEM Operations, Splunk SPL, IBM QRadar AQL, Incident Response, Threat Hunting, Digital Forensics, Cyber Kill Chain, Offense Management"
+  },
+  {
+    "text": "Diploma/Roadmap: Web Development Track\nDuration: 45 hours 45 minutes\nTrack: web_development, fullstack\nSkills: HTML, CSS, JavaScript, TypeScript, ECMAScript, C# OOP, SQL Server, Database Design, .NET Development",
+    "type": "roadmap",
+    "name": "Web Development Track",
+    "duration": "45 hours 45 minutes",
+    "track": "web_development, fullstack",
+    "skills": "HTML, CSS, JavaScript, TypeScript, ECMAScript, C# OOP, SQL Server, Database Design, .NET Development"
+  },
+  {
+    "text": "Diploma/Roadmap: Data Analysis Track\nDuration: 38 hours 54 minutes\nTrack: data_analysis\nSkills: Python Programming, Data Visualization, Power BI, SQL Queries, Data Cleaning, Exploratory Data Analysis, Business Statistics",
+    "type": "roadmap",
+    "name": "Data Analysis Track",
+    "duration": "38 hours 54 minutes",
+    "track": "data_analysis",
+    "skills": "Python Programming, Data Visualization, Power BI, SQL Queries, Data Cleaning, Exploratory Data Analysis, Business Statistics"
+  },
+  {
+    "text": "Diploma/Roadmap: Frontend Track\nDuration: 28 hours 12 minutes\nTrack: web_development, frontend\nSkills: HTML, CSS, JavaScript, TypeScript, ECMAScript, Responsive Design, DOM Manipulation",
+    "type": "roadmap",
+    "name": "Frontend Track",
+    "duration": "28 hours 12 minutes",
+    "track": "web_development, frontend",
+    "skills": "HTML, CSS, JavaScript, TypeScript, ECMAScript, Responsive Design, DOM Manipulation"
+  },
+  {
+    "text": "Diploma/Roadmap: Backend Track\nDuration: 23 hours 34 minutes\nTrack: web_development, backend\nSkills: JavaScript, TypeScript, ECMAScript, C# OOP, SQL Server, Database Design, .NET Backend Development",
+    "type": "roadmap",
+    "name": "Backend Track",
+    "duration": "23 hours 34 minutes",
+    "track": "web_development, backend",
+    "skills": "JavaScript, TypeScript, ECMAScript, C# OOP, SQL Server, Database Design, .NET Backend Development"
+  },
+  {
+    "text": "Diploma/Roadmap: Artificial Intelligence Fundamentals Track\nDuration: 8 hours 44 minutes\nTrack: artificial_intelligence\nSkills: AI Concepts, ChatGPT Understanding, Python for AI, AI Tools Usage, Prompt Engineering",
+    "type": "roadmap",
+    "name": "Artificial Intelligence Fundamentals Track",
+    "duration": "8 hours 44 minutes",
+    "track": "artificial_intelligence",
+    "skills": "AI Concepts, ChatGPT Understanding, Python for AI, AI Tools Usage, Prompt Engineering"
+  },
+  {
+    "text": "Diploma/Roadmap: Fundamentals of Graphics and Motion Track\nDuration: 6 hours 14 minutes\nTrack: creative_arts, graphic_design, motion_graphics\nSkills: Graphic Design, Motion Graphics, Visual Design, Animation Principles, Color Theory, Typography",
+    "type": "roadmap",
+    "name": "Fundamentals of Graphics and Motion Track",
+    "duration": "6 hours 14 minutes",
+    "track": "creative_arts, graphic_design, motion_graphics",
+    "skills": "Graphic Design, Motion Graphics, Visual Design, Animation Principles, Color Theory, Typography"
+  },
+  {
+    "text": "Diploma/Roadmap: Video Editing Track\nDuration: 6 hours 8 minutes\nTrack: creative_arts, video_editing\nSkills: Video Editing, Transitions, Effects, Color Grading, Audio Editing",
+    "type": "roadmap",
+    "name": "Video Editing Track",
+    "duration": "6 hours 8 minutes",
+    "track": "creative_arts, video_editing",
+    "skills": "Video Editing, Transitions, Effects, Color Grading, Audio Editing"
+  },
+  {
+    "text": "Diploma/Roadmap: Crash Courses Track\nDuration: 2 hours 7 minutes\nTrack: general, career_development\nSkills: Marketing Fundamentals, Career Planning, Professional Development",
+    "type": "roadmap",
+    "name": "Crash Courses Track",
+    "duration": "2 hours 7 minutes",
+    "track": "general, career_development",
+    "skills": "Marketing Fundamentals, Career Planning, Professional Development"
+  },
+  {
+    "text": "Diploma/Roadmap: AI Track Diploma (Bootcamp)\nDuration: 5 months\nTrack: artificial_intelligence, deep_learning, machine_learning, mlops\nSkills: Generative AI, GANs, VAEs, Prompt Engineering, RAG, AI Agents, Reinforcement Learning, Deep Learning, Computer Vision, CNNs, NLP, Transformers, BERT, MLOps, Docker, CI/CD, MLflow, DVC, Business English, CV Writing, Interview Preparation",
+    "type": "roadmap",
+    "name": "AI Track Diploma (Bootcamp)",
+    "duration": "5 months",
+    "track": "artificial_intelligence, deep_learning, machine_learning, mlops",
+    "skills": "Generative AI, GANs, VAEs, Prompt Engineering, RAG, AI Agents, Reinforcement Learning, Deep Learning, Computer Vision, CNNs, NLP, Transformers, BERT, MLOps, Docker, CI/CD, MLflow, DVC, Business English, CV Writing, Interview Preparation"
+  },
+  {
+    "text": "Diploma/Roadmap: Data Science Track Diploma (Bootcamp)\nDuration: 5 months\nTrack: data_science, data_analysis, machine_learning\nSkills: Python Programming, Data Cleaning, Data Scraping, Pandas, NumPy, OOP, Power BI Dashboards, SQL Server, Stored Procedures, Advanced Excel, Pivot Tables, DAX, Power Query, Business Statistics, Machine Learning, Supervised Learning, Unsupervised Learning, Neural Networks, Regression, Business English, CV Writing, Interview Preparation",
+    "type": "roadmap",
+    "name": "Data Science Track Diploma (Bootcamp)",
+    "duration": "5 months",
+    "track": "data_science, data_analysis, machine_learning",
+    "skills": "Python Programming, Data Cleaning, Data Scraping, Pandas, NumPy, OOP, Power BI Dashboards, SQL Server, Stored Procedures, Advanced Excel, Pivot Tables, DAX, Power Query, Business Statistics, Machine Learning, Supervised Learning, Unsupervised Learning, Neural Networks, Regression, Business English, CV Writing, Interview Preparation"
+  },
+  {
+    "text": "Diploma/Roadmap: SOC Track Diploma (Bootcamp)\nDuration: 5 months\nTrack: cybersecurity, soc\nSkills: Network Security, OSI Model, Subnetting, Firewalls, Linux CLI, Windows Active Directory, GPO, Splunk SPL, Splunk Dashboards, IBM QRadar AQL, Offense Management, Cyber Kill Chain, Incident Response, Threat Hunting, Digital Forensics, Memory Analysis, Disk Analysis, Chain of Custody, Business English, CV Writing, Interview Preparation",
+    "type": "roadmap",
+    "name": "SOC Track Diploma (Bootcamp)",
+    "duration": "5 months",
+    "track": "cybersecurity, soc",
+    "skills": "Network Security, OSI Model, Subnetting, Firewalls, Linux CLI, Windows Active Directory, GPO, Splunk SPL, Splunk Dashboards, IBM QRadar AQL, Offense Management, Cyber Kill Chain, Incident Response, Threat Hunting, Digital Forensics, Memory Analysis, Disk Analysis, Chain of Custody, Business English, CV Writing, Interview Preparation"
+  },
+  {
+    "text": "# Fullstack Development Diploma\n### Kayfa Academy — Accredited Professional Program\n\nA hands-on, project-first program that takes you from zero to job-ready in full-stack web\ndevelopment. You build complete applications, deploy them live, and graduate with a portfolio\nthat's ready for jobs and freelancing.",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": " them live, and graduate with a portfolio\nthat's ready for jobs and freelancing.\n\n| | |\n|---|---|\n| **Duration** | 6 months |\n| **Sessions** | 55 live sessions (2–3 hours each) |\n| **Format** | Interactive live sessions — also recorded, available to you for 1 year |\n| **Level** | Junior Full Stack Developer |\n| **Outcomes** | Live portfolio · Graduation project · CV guidance · A personal Sub Domain per student |",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "rtfolio · Graduation project · CV guidance · A personal Sub Domain per student |\n\n## Prerequisites\n- No prior programming experience required — the diploma starts from scratch.\n- Basic computer skills, curiosity, and a problem-solving mindset.\n- Recommended (optional): basic English for reading technical documentation.\n- A laptop that runs VS Code and a browser smoothly (8 GB RAM+), and a stable internet connection.",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "ns VS Code and a browser smoothly (8 GB RAM+), and a stable internet connection.\n\n## What You'll Learn\n**Frontend:** HTML5, CSS3, Responsive Design, Bootstrap, Tailwind CSS, Git & GitHub, JavaScript\n(DOM/BOM), Async & APIs, TypeScript, React, React Hook Form & Zod, Redux Toolkit, React Query,\nshadcn/ui, Next.js.",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "t, React, React Hook Form & Zod, Redux Toolkit, React Query,\nshadcn/ui, Next.js.\n\n**Backend:** Node.js, Express.js, REST APIs, MVC, Middleware, MongoDB & Mongoose, MySQL &\nSequelize, Joi Validation, JWT Auth, Roles & Authorization, Sessions & Cookies, Social Login,\nFile Uploads, Emails, Cron Jobs, PDF & QR, Socket.IO, Redis Caching, Docker, Deployment,\nSSL & Sub Domain.",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": " Jobs, PDF & QR, Socket.IO, Redis Caching, Docker, Deployment,\nSSL & Sub Domain.\n\n## Curriculum Structure\n1. **Frontend Foundations** — Sessions 1–12 — HTML, CSS, Bootstrap, Tailwind, Git/GitHub, first live deploy.\n2. **JavaScript & TypeScript** — Sessions 13–22 — logic, DOM, APIs, async, ES6+, OOP, TypeScript.\n3. **React Ecosystem** — Sessions 23–31 — components, hooks, forms, routing, Redux Toolkit, React Query, shadcn/ui.\n4. **Next.js** — Sessions 32–35 — routing, rendering strategies, API routes, auth concepts, deployment.\n5. **Backend (Node.js & Express)** — Sessions 36–50 — REST APIs, databases, auth, advanced features, deployment, graduation project.\n6. **Non-Technical Phase** — Sessions 51–55 — English for developers + career development (portfolio, CV, interviews, freelancing).",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "sh for developers + career development (portfolio, CV, interviews, freelancing).\n\n## Major Projects\n- **S07** — Responsive HTML + CSS site (first portfolio piece)\n- **S10** — Bootstrap landing page (live)\n- **S12** — Full Tailwind website (live)\n- **S20** — JavaScript app (live)\n- **S31** — React app (live)\n- **S35** — Next.js project (live)\n- **S50** — Full-stack graduation project + portfolio showcase",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "js project (live)\n- **S50** — Full-stack graduation project + portfolio showcase\n\n## Outcomes & Careers\nBy the end you'll have several live projects, a React app, a Next.js project, deployed backend\nAPIs, and a full-stack graduation project linked to a personal Sub Domain — a portfolio ready\nfor jobs, freelancing, and technical interviews.",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": " Sub Domain — a portfolio ready\nfor jobs, freelancing, and technical interviews.\n\n**Eligible roles:** Junior Full Stack Developer · Frontend Developer · Backend Developer ·\nReact/Next.js Developer · freelancing (Upwork, Mostaql).",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "r · Backend Developer ·\nReact/Next.js Developer · freelancing (Upwork, Mostaql).\n\n## Why Kayfa\n- **Interactive & recorded live sessions** — live Q&A and real-time feedback; recordings stay available for 1 year to review anytime.\n- **Expert instructor + 4 mentors** who review your code and tasks until they're right.\n- **Beginner-friendly path** from zero to final projects.\n- **Real portfolio projects** deployed live on your own Sub Domain.\n- **Job-focused outcomes** — practical skills, portfolio, CV guidance, and freelance readiness.",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "outcomes** — practical skills, portfolio, CV guidance, and freelance readiness.\n\n## Certificate\nGraduates receive an accredited completion certificate from Kayfa Academy.\n\n## Contact\n**Phone:** 01032422466 · 00963983378448\n**Email:** info@kayfa.io",
+    "type": "document",
+    "source": "Kayfa_Fullstack_Diploma"
+  },
+  {
+    "text": "# 🔴 Product: Penetration Testing & Ethical Hacking Track by Kayfa\n**Pitch:** A certified 48-hour offensive security program that takes complete beginners and builds them into job-ready Junior Penetration Testers — through 100% hands-on lab execution using the same tools and methodologies as professional red teams worldwide.",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": "tion using the same tools and methodologies as professional red teams worldwide.\n\n> 💡 **For the Sales Agent:** Lead with urgency — seats are limited and cybersecurity salaries for pentesters start at $50K+ globally. If a prospect hesitates, anchor on the portfolio report: *\"You leave with a real deliverable, not just a certificate.\"*",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": "portfolio report: *\"You leave with a real deliverable, not just a certificate.\"*\n\n## ⚔️ The Technical Stack (Curriculum Highlights)\n* **Legal & Ethical Foundations:** Cybercrime law, ethical hacking principles, Rules of Engagement (ROE) documentation, and the 5-phase penetration testing methodology.\n* **Linux & CLI Mastery:** Full filesystem navigation, user/permission management (chmod/chown), log analysis with grep/awk, and Bash scripting for task automation.\n* **Network & Traffic Analysis:** Deep dive into TCP/IP, DNS, HTTP protocols; live packet capture and PCAP analysis using **Wireshark**; understanding attacks at the packet level.\n* **Reconnaissance & Enumeration:** OSINT and passive recon, live host discovery and port scanning with **Nmap**, service enumeration, banner grabbing, and full attack surface mapping.\n* **Web Application Security:** HTTP anatomy, session management, **Burp Suite** (Proxy & Repeater), and exploitation of SQL Injection, XSS, and IDOR vulnerabilities.\n* **Exploitation & Password Attacks:** Brute-forcing SSH/FTP with **Hydra**, hash cracking with **Hashcat** and **John the Ripper**, and working with the RockYou wordlist.\n* **Post-Exploitation:** Linux privilege escalation methodology, SUID/SGID misconfiguration abuse, Cron job exploitation, and automated enumeration with **LinPEAS**.\n* **Professional Reporting:** Writing executive summaries, CVSS-based risk scoring, reproduction steps, and remediation recommendations — the #1 career differentiator.",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": "roduction steps, and remediation recommendations — the #1 career differentiator.\n\n## 💼 Career & Job Readiness\n* **Direct Job Targets:** Junior Penetration Tester, SOC Tier-1 Analyst, Vulnerability Assessment Analyst, Web Application Security Tester, and Freelance Bug Bounty Hunter (HackerOne / Bugcrowd / Intigriti).\n* **Certification Pathway:** Graduates are primed for eJPT, CompTIA Security+, PNPT, CEH, and ultimately OSCP — unlocking senior red team and consulting roles.\n* **Portfolio-Ready Output:** Students leave with a real penetration test report they can show employers — the strongest possible proof of skill at the junior level.",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": " can show employers — the strongest possible proof of skill at the junior level.\n\n## 🏆 What Kayfa Provides — Our Commitment to Every Student\n* ✅ **Certified Instruction** by Eng. Saleh Al-Hourani, Security Operations & Infrastructure Team Lead — a practitioner, not just a lecturer.\n* ✅ **Fully Isolated Lab Environment** provided and configured by Kayfa — students practice legally and safely from day one.\n* ✅ **24 Live Sessions** (48 hours) of structured, mentor-led training — no self-paced guessing, real accountability.\n* ✅ **Professional Document Templates** (AUP & ROE) provided by Kayfa — ready to use in real client engagements post-graduation.\n* ✅ **Kayfa Certificate of Completion** upon graduation, backed by a community of 15,000+ learners.\n* ✅ **Career Support** — CV guidance and interview prep to position graduates competitively in the job market.\n* ✅ **Capstone Project** facilitated by Kayfa — a timed, end-to-end penetration test simulating a real-world engagement.",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": "Kayfa — a timed, end-to-end penetration test simulating a real-world engagement.\n\n## 📦 What Graduates Walk Away With\n* A fully configured personal penetration testing lab, ready for continued practice.\n* Custom Bash automation scripts for reconnaissance and scanning tasks.\n* A complete attack surface map from a real recon exercise.\n* Documented web vulnerability findings (SQLi, IDOR, XSS) from lab targets.\n* A full Capstone penetration test report — executive summary, CVSS-rated findings, and remediation steps — **the strongest portfolio piece for landing a first role.**",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": " remediation steps — **the strongest portfolio piece for landing a first role.**\n\n## 🚨 Sales Objection Handling\n* *\"I have no experience\"* → No prior cybersecurity experience needed. The course starts from absolute zero.\n* *\"Is it worth it?\"* → Bug bounty hunters on HackerOne earn per vulnerability found. One critical finding can cover the course fee.\n* *\"I'll do it later\"* → Seats are limited. The cybersecurity talent gap is widening — earlier entry means faster career growth.",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": "cybersecurity talent gap is widening — earlier entry means faster career growth.\n\n**Closing Value:** \"Stop watching hacking tutorials — start executing real attacks in a legal lab. Kayfa gives you the tools, the mentor, the lab, and the report to land your first offensive security role.\"",
+    "type": "document",
+    "source": "Kayfa_PenTest_Diploma"
+  },
+  {
+    "text": "# 🚀 Product: AI Track by Kayfa\n**Pitch:** A comprehensive 5-month interactive live program designed to transform learners into job-ready AI Engineers through rigorous practice and expert mentorship.",
+    "type": "document",
+    "source": "kayfa_ai_diploma"
+  },
+  {
+    "text": "ers into job-ready AI Engineers through rigorous practice and expert mentorship.\n\n## 🧠 The Technical Edge (Curriculum Highlights)\n* **Next-Gen AI:** Mastering Generative AI (GANs, VAEs), Prompt Engineering, and RAG (Retrieval-Augmented Generation).\n* **Advanced Systems:** Building autonomous AI Agents, Decision Systems, and Reinforcement Learning.\n* **Core Fundamentals:** Deep Learning, Computer Vision (CNNs), and NLP (Transformers/BERT).\n* **Production Skills (MLOps):** Deployment using Docker, CI/CD pipelines, and model management with MLflow/DVC.\n* **Real-World Application:** Students build a professional portfolio with complex Capstone Projects and Case Studies.",
+    "type": "document",
+    "source": "kayfa_ai_diploma"
+  },
+  {
+    "text": " build a professional portfolio with complex Capstone Projects and Case Studies.\n\n## 💼 Career & Professional Growth\n* **Business English:** Tailored language training (General or Business level) for the global tech market.\n* **Soft Skills & Prep:** specialized coaching on CV writing, interview simulations, and career path planning.\n* **Holistic Approach:** We don't just teach code; we build professional character.",
+    "type": "document",
+    "source": "kayfa_ai_diploma"
+  },
+  {
+    "text": "*Holistic Approach:** We don't just teach code; we build professional character.\n\n## 🏆 Authority & Trust Signals\n* **Dual Accreditation:** Graduates earn a Kayfa certificate with options for international accreditation from **University of Delaware** and **Leeds Academy**.\n* **Proven Impact:** Trusted by 15,000+ learners and partners like Microsoft, GIZ, and Paymob.\n* **Expert Access:** Direct mentorship and code reviews from industry veterans (e.g., Dr. Karim).",
+    "type": "document",
+    "source": "kayfa_ai_diploma"
+  },
+  {
+    "text": ":** Direct mentorship and code reviews from industry veterans (e.g., Dr. Karim).\n\n**Closing Value:** \"This is not just a course; it is a full career transformation backed by international recognition.\"",
+    "type": "document",
+    "source": "kayfa_ai_diploma"
+  },
+  {
+    "text": "# Kayfa Company Overview\n\nThis document provides Kayfa's company identity, mission, key features, and contact information for AI agent retrieval.\n\n## Company Identity\n\nKayfa is a **leading Arabic educational platform** developed by **Kayfa Digital Solutions**, accredited by the **International Accreditation Organization (IAO)**.\n\n## Mission and Audience",
+    "type": "document",
+    "source": "kayfa_company_overview"
+  },
+  {
+    "text": "the **International Accreditation Organization (IAO)**.\n\n## Mission and Audience\n\n**Mission:** Improve lives through learning and technology by equipping users with skills for in-demand digital jobs.\n\n**Target Audience:**\n- Students and recent graduates\n- Working professionals and freelancers\n- Anyone interested in IT and digital fields\n\n## Key Features",
+    "type": "document",
+    "source": "kayfa_company_overview"
+  },
+  {
+    "text": "ls and freelancers\n- Anyone interested in IT and digital fields\n\n## Key Features\n\n| Feature | Description |\n|---------|-------------|\n| **Learning Model** | Self-paced, on-demand courses with no deadlines |\n| **Certification** | Employer-recognized certificates upon completion |\n| **NGen Program** | Technology education for students aged 8-18 |\n\n## Contact Points",
+    "type": "document",
+    "source": "kayfa_company_overview"
+  },
+  {
+    "text": "Gen Program** | Technology education for students aged 8-18 |\n\n## Contact Points\n\n| Type | Detail |\n|------|--------|\n| **General Email** | info@kayfa.io |\n| **Support Email** | support@kayfa.io |\n| **U.A.E Phone** | +971 55 387 7671 |\n| **Egypt Phone** | +201 05 502 3774 |\n| **Syria Phone** | +963 98 337 8448 |\n\n## Physical Locations",
+    "type": "document",
+    "source": "kayfa_company_overview"
+  },
+  {
+    "text": "+201 05 502 3774 |\n| **Syria Phone** | +963 98 337 8448 |\n\n## Physical Locations\n\n- **U.A.E (HQ):** Business Center 1, M Floor, The Meydan Hotel, Nad Al Sheba, Dubai\n- **Egypt:** 15 Al Lasilki, Infront of Maadi Technology Park, Maadi, Cairo\n- **Syria:** Next to Day by Day Mall, West Al Mashtal, Hama\n\n## Sources",
+    "type": "document",
+    "source": "kayfa_company_overview"
+  },
+  {
+    "text": "i, Cairo\n- **Syria:** Next to Day by Day Mall, West Al Mashtal, Hama\n\n## Sources\n\n- https://kayfa.io/\n- https://kayfa.io/about-us/\n- https://kayfa.io/contact-us/\n- https://kayfa.io/faqs/\n- https://kayfa.io/terms-conditions/",
+    "type": "document",
+    "source": "kayfa_company_overview"
+  },
+  {
+    "text": "# 📊 Product: Data Science Track by Kayfa\n**Pitch:** A rigorous 5-month hybrid program designed to transform beginners into professional Data Scientists through a blend of flexible learning and live, interactive mentorship.",
+    "type": "document",
+    "source": "kayfa_data_science_diploma"
+  },
+  {
+    "text": "cientists through a blend of flexible learning and live, interactive mentorship.\n\n## 🛠️ The Technical Stack (Curriculum Highlights)\n* **Data Mastery with Python:** Deep dive into cleaning, scraping, and analysis using Pandas, NumPy, and OOP concepts.\n* **Business Intelligence & SQL:** Build professional dashboards with **Power BI** and manage enterprise data using **MS SQL Server** (queries, stored procedures).\n* **Advanced Analytics:** Go beyond basics with **Advanced Excel** (Pivot Tables, DAX, Power Query) and Business Statistics.\n* **Machine Learning:** Build predictive models using Supervised/Unsupervised learning, Neural Networks, and Regression algorithms.\n* **Applied Experience:** Students solve real business problems through 2 major Capstone Projects and continuous hands-on workshops.",
+    "type": "document",
+    "source": "kayfa_data_science_diploma"
+  },
+  {
+    "text": "ss problems through 2 major Capstone Projects and continuous hands-on workshops.\n\n## 💼 Career & Professional Growth\n* **Global Readiness:** Includes a placement test and tailored **Business English** training to prepare for international roles.\n* **Career Launchpad:** A dedicated \"Professional Skills\" module covers CV writing, interview simulations, and career path planning.\n* **Holistic Support:** Continuous guidance to ensure students are not just coders, but problem solvers.",
+    "type": "document",
+    "source": "kayfa_data_science_diploma"
+  },
+  {
+    "text": "Continuous guidance to ensure students are not just coders, but problem solvers.\n\n## 🏆 Authority & Trust Signals\n* **Triple Certification:** Graduates receive a Kayfa certificate, with options for international accreditation from the **University of Delaware** and **Leeds Academy**.\n* **Proven Quality:** A community of 15,000+ learners and 30+ expert instructors (e.g., Mustafa Othman).\n* **Industry Partners:** Curriculum aligned with market needs, backed by partners like Microsoft and GIZ.",
+    "type": "document",
+    "source": "kayfa_data_science_diploma"
+  },
+  {
+    "text": "Curriculum aligned with market needs, backed by partners like Microsoft and GIZ.\n\n**Closing Value:** \"From raw data to decision-making models—this track equips you with the complete toolkit used by top companies today.\"",
+    "type": "document",
+    "source": "kayfa_data_science_diploma"
+  },
+  {
+    "text": "# Kayfa Free Educational Content\n\nThis document lists all free courses, tips, and sessions offered by Kayfa, optimized for retrieval-augmented generation (RAG) to quickly identify no-cost learning opportunities.\n\n## Free Courses and Sessions\n\nKayfa provides a variety of free content, including introductory courses and specialized tips, to make knowledge accessible to everyone [1].",
+    "type": "document",
+    "source": "kayfa_free_educational_content"
+  },
+  {
+    "text": "tory courses and specialized tips, to make knowledge accessible to everyone [1].\n\n| Course Name | Videos | Hours | Instructor/Focus |\n| :--- | :--- | :--- | :--- |\n| **SOC Tips** | 35 | 1:18 | Security Operations Center (SOC) |\n| **Programming Tips** | 30 | 1:0 | Programming |\n| **AI Tips** | 5 | 0:5 | Artificial Intelligence |\n| **Data Science Tips** | 4 | 0:3 | Data Science |\n| **General Courses Tips** | 4 | 0:4 | General Topics |\n| **Free Sessions** | 45 | 12:5 | Various Topics |\n| **Introduction to Data Science** | 1 | 0:10 | Osama Salem (CEO of Etica Technology) |\n| **Live Session - All About Data Science** | 9 | 3:19 | Osama Salem |\n| **HTML Tips** | 8 | 0:8 | Mohamed Ali (Full-Stack Web Developer) |\n| **QRadar Professional Pathway TIPS** | 6 | 0:19 | Hatem Metwally (Information Security Consultant) |\n| **Network and Security Fundamentals Tips** | 7 | 0:8 | Ahmed Shalaby (Senior Cyber Security Engineer) |",
+    "type": "document",
+    "source": "kayfa_free_educational_content"
+  },
+  {
+    "text": "Fundamentals Tips** | 7 | 0:8 | Ahmed Shalaby (Senior Cyber Security Engineer) |\n\n## Source\n\n[1] https://kayfa.io/search/ \"Search | Kayfa Platform\"",
+    "type": "document",
+    "source": "kayfa_free_educational_content"
+  },
+  {
+    "text": "# Kayfa Instructor Network\n\nThis document lists the key instructors on the Kayfa platform, including their course count and professional affiliation, optimized for AI agent retrieval.\n\n## Expert Instructors\n\nKayfa's instructors are highly knowledgeable experts with extensive industry experience [1]. The platform lists 25 trainers in total [2].",
+    "type": "document",
+    "source": "kayfa_instructor_network"
+  },
+  {
+    "text": " extensive industry experience [1]. The platform lists 25 trainers in total [2].\n\n| Instructor Name | Courses | Professional Affiliation |\n| :--- | :--- | :--- |\n| **Osama Salem** | 10 | CEO of Etica Technology |\n| **Mohamed Ali** | 10 | Full-Stack Web Developer at Future Internet |\n| **Mariam Elgaby** | 8 | Project Manager at The American University in Cairo |\n| **Hagar Ibrahiem** | 6 | Data Scientist and ML Engineer |\n| **Ahmed Saber** | 6 | Front-end Developer at Valinteca |\n| **Mostafa Othman** | 5 | Managing Director at Raqameyyah Digital Consultancy |\n| **Motasem Hamdan** | 4 | Cyber Security Trainer at YouTube |\n| **Hazem Hassan** | 3 | Excel Expert |\n| **Eman Raslan** | 2 | Freelance Instructor at the AUC - School of Continuing Education (SCE) |\n| **Mohammad Thabet** | 2 | Lead Machine Learning Engineer at Cognitronix |\n| **Ahmed Shalaby** | 2 | Senior Cyber Security Engineer |\n| **Walid Saed** | 2 | Regional Marketing Consultant at Mashroo3k |\n| **Mostafa Elhosseini** | 2 | Professor of Systems Engineering at Mansoura University |\n| **Abdelbaky Shehata** | 2 | Technical Consultant at Alnafitha International |\n| **Diaa El-Gendy** | 2 | Cyber Security Senior Manager Consultant - SIOC at IBM |\n| **Yehia kandeel** | 2 | Security Consultant |\n| **Hatem Metwally** | 2 | Information Security Consultant |\n| **Hesham Assem** | 1 | Assistant Teacher, Artificial Intelligence, University of Plymouth |\n| **Ragaey Sameh** | 1 | Senior Animator at Saadi Gohar Media Hub |\n| **Heba Hashem Abdeen** | 1 | Teaching Assistant at the College of Arts and Design at MSA University |\n| **Ahmed Mamdoh** | 1 | Training Manager at ITI |\n| **Mahmoud Ramadan** | 1 | Media production Team leader |\n| **Bassma Hassan** | 2 | ML Engineer at Kemet Artificial Intelligence |\n| **Abdelrahman Mohamed** | 0 | Cybercrime Security Researcher at eBay |\n| **Abdelrahman Attia** | 0 | Africa SOC Lead |",
+    "type": "document",
+    "source": "kayfa_instructor_network"
+  },
+  {
+    "text": "me Security Researcher at eBay |\n| **Abdelrahman Attia** | 0 | Africa SOC Lead |\n\n## Sources\n\n[1] https://kayfa.io/about-us/ \"Your Gateway to Digital Success: Master In-Demand Skills with Kayfa eLearning | Kayfa Platform\"\n[2] https://kayfa.io/instructors/ \"Kayfa's Secret Weapon: Discover Our Network of World-Class Specialists | Kayfa Platform\"",
+    "type": "document",
+    "source": "kayfa_instructor_network"
+  },
+  {
+    "text": "# Kayfa Paid Educational Tracks\n\nThis document details the structured, paid learning paths (Tracks) offered by Kayfa, summarizing their content and pricing for efficient AI agent retrieval.\n\n## Educational Tracks Overview\n\nKayfa's tracks are comprehensive learning paths designed to qualify individuals for the technological labor market [1].",
+    "type": "document",
+    "source": "kayfa_paid_educational_tracks"
+  },
+  {
+    "text": "ng paths designed to qualify individuals for the technological labor market [1].\n\n| Track Name | Videos | Hours | Courses | Price (USD) | Source URL |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **Data Science** | 736 | 75:31 | 12 | $250 | [1] |\n| **Security Operations Center (SOC)** | 401 | 44:52 | 9 | $250 | [1] |\n| **Web Development** | 468 | 45:45 | 9 | $200 | [1] |\n| **Data Analysis** | 404 | 38:54 | 8 | $180 | [1] |\n| **Frontend Track** | 313 | 28:12 | 6 | $100 | [1] |\n| **Backend Track** | 244 | 23:34 | 6 | $100 | [1] |\n| **Artificial Intelligence Fundamentals** | 105 | 8:44 | 3 | $65 | [1] |\n| **Fundamentals of Graphics and Motion** | 68 | 6:14 | 2 | $65 | [1] |\n| **Video Editing Track** | 23 | 6:8 | 1 | $45 | [1] |\n| **Crash Courses** | 35 | 2:7 | 3 | $25 | [1] |",
+    "type": "document",
+    "source": "kayfa_paid_educational_tracks"
+  },
+  {
+    "text": "** | 23 | 6:8 | 1 | $45 | [1] |\n| **Crash Courses** | 35 | 2:7 | 3 | $25 | [1] |\n\n## Source\n\n[1] https://kayfa.io/search/ \"Search | Kayfa Platform\"",
+    "type": "document",
+    "source": "kayfa_paid_educational_tracks"
+  },
+  {
+    "text": "# Kayfa Paid Individual Courses\n\nThis document lists individual paid courses offered by Kayfa, along with their key metrics and pricing, optimized for AI agent retrieval.\n\n## Individual Course Offerings\n\nThese courses focus on specific skills and technologies, often taught by specialized instructors.",
+    "type": "document",
+    "source": "kayfa_paid_individual_courses"
+  },
+  {
+    "text": "us on specific skills and technologies, often taught by specialized instructors.\n\n| Course Name | Videos | Hours | Price (USD) | Instructor/Focus |\n| :--- | :--- | :--- | :--- | :--- |\n| **Business Statistics** | 137 | 12:38 | 65 | Prof. Mostafa Elhosseini |\n| **MS SQL Server Programming** | 87 | 10:3 | 35 | Hagar Ibrahiem |\n| **Data Visualization by Power Bi** | 79 | 6:13 | 30 | Eman Raslan |\n| **Network and Security Fundamentals** | 94 | 4:48 | 30 | Ahmed Shalaby |\n| **HTML** | 42 | 5:12 | 30 | Mohamed Ali |\n| **Fundamentals of Graphic Design** | 46 | 2:35 | 30 | Heba Hashem Abdeen |\n| **Microsoft Windows Active Directory** | 74 | 6:21 | 35 | Abdelbaky Shehata |\n| **Linux Fundamentals** | 32 | 5:19 | 40 | Yehia kandeel |\n| **Splunk SIEM Case Studies** | 19 | 2:36 | 50 | Motasem Hamdan |\n| **How AI & Chat GPT Work** | 29 | 2:1 | 20 | Mohammad Thabet |\n| **Introduction to JavaScript** | 22 | 2:35 | 20 | Mohamed Ali |\n| **Introduction to TypeScript** | 28 | 2:33 | 20 | Ahmed Saber |\n| **Introduction to Marketing** | 12 | 0:57 | 15 | Walid Saed |\n| **Career Planning** | 5 | 0:18 | 15 | Mariam Elgaby |",
+    "type": "document",
+    "source": "kayfa_paid_individual_courses"
+  },
+  {
+    "text": "0:57 | 15 | Walid Saed |\n| **Career Planning** | 5 | 0:18 | 15 | Mariam Elgaby |\n\n## Source\nhttps://kayfa.io/search/ \"Search | Kayfa Platform\"",
+    "type": "document",
+    "source": "kayfa_paid_individual_courses"
+  },
+  {
+    "text": "# Kayfa Policies and FAQs\n\nThis document covers Kayfa's subscription, refund, cancellation policies, and frequently asked questions.\n\n## Subscription Policy",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": ", cancellation policies, and frequently asked questions.\n\n## Subscription Policy\n\n| Topic | Policy |\n|-------|--------|\n| **Term** | Annual basis only, auto-renews unless canceled |\n| **Payment** | Online via bank transaction or credit card |\n| **Pricing** | Subject to change; may vary by country/currency |\n| **Cancellation** | Cancel before next billing date; takes effect at cycle end |",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": "**Cancellation** | Cancel before next billing date; takes effect at cycle end |\n\n## Refund Policy\n\n### General\nNo refunds once subscription fees have been withdrawn.\n\n### Live/Onsite Courses\n| Timing | Refund |\n|--------|--------|\n| 7+ days before start | Full refund |\n| Less than 7 days before | 80% refund (20% admin fee) |\n| After program started | No refund |",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": "days before | 80% refund (20% admin fee) |\n| After program started | No refund |\n\n### Recorded Courses\n| Access Status | Refund |\n|---------------|--------|\n| No content accessed | Full refund |\n| Content accessed/downloaded | No refund |\n\n### Processing\nRefunds issued to original payment method within **7-30 working days**.\n\n## Course Replacement",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": "to original payment method within **7-30 working days**.\n\n## Course Replacement\n\nUsers can replace a course with one of **equal or lower value** before the course begins. Pay difference if replacement is higher value.\n\n## Frequently Asked Questions",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": "s. Pay difference if replacement is higher value.\n\n## Frequently Asked Questions\n\n| Question | Answer |\n|----------|--------|\n| **What is Kayfa?** | Educational platform offering high-quality courses to improve lives through learning and technology. |\n| **How do I access courses?** | On-demand via desktop/laptop. Access via confirmation email link or \"My Learning\" page after login. |\n| **Are there deadlines?** | No deadlines to begin or complete courses. |\n| **Can I preview courses?** | Yes, some courses offer free previews. |\n| **Where can I get help?** | Email support@kayfa.io |",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": "es offer free previews. |\n| **Where can I get help?** | Email support@kayfa.io |\n\n## Source\n\n- https://kayfa.io/faqs/\n- https://kayfa.io/terms-conditions/",
+    "type": "document",
+    "source": "kayfa_policies_and_faqs"
+  },
+  {
+    "text": "# Kayfa Privacy Policy\n\nThis document summarizes the key aspects of Kayfa's Privacy Policy, focusing on data collection, usage, and user rights, optimized for AI agent retrieval.\n\n## Data Controller and Purpose",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "d user rights, optimized for AI agent retrieval.\n\n## Data Controller and Purpose\n\nKayfa is the **data controller**, responsible for deciding how personal information is collected, stored, and used [1]. The purpose of data collection is to provide services, communicate with users, troubleshoot issues, secure against fraud, improve services, analyze usage, serve personalized advertising, and comply with legal requirements [1].",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "e usage, serve personalized advertising, and comply with legal requirements [1].\n\n## Information Collected\n\nThe following personal data is collected upon account registration and use of services [1]:",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "ng personal data is collected upon account registration and use of services [1]:\n\n*   **Identity and Contact:** Name, Email Address, Year of Birth, Gender, Country of Residence/Origin, Phone Numbers, Social Media Accounts (if used for login).\n*   **Usage Data:** Records of visits to Kayfa and engagement with educational content (pages, videos, assessments, posts, comments, and other interactions).\n*   **Technical Data:** Information collected through automated means like cookies and web beacons to enable site functionality, remember preferences, and secure the site [1].",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "ons to enable site functionality, remember preferences, and secure the site [1].\n\n## User Rights\n\nUsers have several rights regarding their personal data [1]:",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "].\n\n## User Rights\n\nUsers have several rights regarding their personal data [1]:\n\n*   **Right to Access:** Request access to personal data held and information about its processing.\n*   **Right to Rectification:** Request correction or update of inaccurate or incomplete information.\n*   **Right to Erasure:** Request deletion of personal data in certain circumstances.\n*   **Right to Restrict Processing:** Request restriction of processing under certain conditions.\n*   **Right to Object:** Object to the processing of personal data (e.g., for direct marketing).",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "bject:** Object to the processing of personal data (e.g., for direct marketing).\n\nTo exercise these rights, users should contact Kayfa at **info@kayfa.io** [1].\n\n## Source\n\n[1] https://kayfa.io/privacy/ \"Privacy Policy | Kayfa Platform\"",
+    "type": "document",
+    "source": "kayfa_privacy_policy"
+  },
+  {
+    "text": "# 🛡️ Product: SOC Track by Kayfa\n**Pitch:** A specialized 5-month hybrid program designed to forge battle-ready SOC Analysts through intense hands-on training with industry-standard SIEM tools and real-world attack simulations.",
+    "type": "document",
+    "source": "kayfa_soc_diploma"
+  },
+  {
+    "text": "on training with industry-standard SIEM tools and real-world attack simulations.\n\n## 🔐 The Technical Stack (Curriculum Highlights)\n* **Core Infrastructure:** Mastery of Network Security (OSI, Subnetting, Firewalls) and OS Administration (Linux CLI & Windows Active Directory/GPO).\n* **SIEM Mastery:** Deep dive into the market leaders: **Splunk** (SPL queries, Dashboards) and **IBM QRadar** (AQL, Offense Management).\n* **Defensive Operations:** Comprehensive training on the Cyber Kill Chain, Incident Response lifecycles, and proactive **Threat Hunting**.\n* **Forensics & Analysis:** Introduction to Digital Forensics (Memory/Disk analysis) and handling Chain of Custody.\n* **War Room Experience:** Students tackle real scenarios like Ransomware analysis and \"Boss of the SOC\" (BOTS) challenges in 2 major Capstone Projects.",
+    "type": "document",
+    "source": "kayfa_soc_diploma"
+  },
+  {
+    "text": "e analysis and \"Boss of the SOC\" (BOTS) challenges in 2 major Capstone Projects.\n\n## 💼 Career & Professional Growth\n* **Global Readiness:** tailored **English for Business** training to prepare for international security roles.\n* **Career Launchpad:** A dedicated \"Professional Skills\" module covers CV optimization, technical interview prep, and career pathing.\n* **Soft Skills:** Focus on communication and reporting—critical for explaining breaches to stakeholders.",
+    "type": "document",
+    "source": "kayfa_soc_diploma"
+  },
+  {
+    "text": "on communication and reporting—critical for explaining breaches to stakeholders.\n\n## 🏆 Authority & Trust Signals\n* **Triple Certification:** Graduates receive a Kayfa certificate, with options for international accreditation from the **University of Delaware** and **Leeds Academy**.\n* **Expert Mentorship:** Learn from practitioners like Dr. Abdelrahman and top industry veterans.\n* **Proven Track Record:** Joined by 15,000+ learners; curriculum aligned with global market demands.",
+    "type": "document",
+    "source": "kayfa_soc_diploma"
+  },
+  {
+    "text": "rd:** Joined by 15,000+ learners; curriculum aligned with global market demands.\n\n**Closing Value:** \"From monitoring logs to hunting threats—this track builds the exact skill set required to defend modern enterprises.\"",
+    "type": "document",
+    "source": "kayfa_soc_diploma"
+  }
+]

@@ -4,3 +4,5 @@ pymongo
 python-dotenv
 griffe
 pandas
+faiss-cpu 
+sentence-transformers
