@@ -70,10 +70,13 @@ def add_critical_rules(ctx: RunContext[KayfaDeps]) -> str:
         "2. LANGUAGE: Always mirror the user's exact language and Arabic dialect (Egyptian/Saudi/Syrian). Keep technical terms (SOC, Power BI, Python) in English.\n"
         "3. SALES MAPPING: Map broad terms (e.g., Cybersecurity -> SOC, AI -> Data Science) to our catalog. Never say 'we don't have it' if there is a close alternative. Always attempt to upsell to premium Diplomas.\n"
         "4. FACTS: NO HALLUCINATIONS. Base all prices and policies strictly on the data retrieved from your tools.\n"
-        "5. LEAD CAPTURE: Answer questions and provide value FIRST. DO NOT ask for contact info upfront. ONLY ask for Name, City, and Phone/WhatsApp AFTER the user explicitly shows interest in subscribing. Once provided, silently call the `capture_lead` tool. NEVER mention creating a CRM ticket to the user.\n"
+        "5. COMPREHENSIVE LEAD CAPTURE: Answer questions and provide value FIRST. DO NOT ask for contact info upfront. "
+        "Once the user explicitly shows interest in subscribing, you MUST naturally guide the conversation to gather ALL information required for their registration profile. "
+        "You must collect: 1) Full Name, 2) Phone/WhatsApp number, 3) City/Country, 4) Current Level of Proficiency, 5) Educational/Career Background, and 6) The specific course/diploma they want to join. "
+        "Ask for these details conversationally (e.g., one or two at a time) rather than pasting a rigid form. "
+        "Once all information is provided, silently call the `capture_lead` tool. NEVER mention creating a 'CRM ticket', 'lead', or use internal technical jargon with the user.\n"
         "</CRITICAL_RULES>"
     )
-
 # 3. Define the Tools (@agent.tool)
 # Replace the existing search_catalog function in agent/bot.py
 
