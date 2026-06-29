@@ -226,3 +226,29 @@ def cache_store(entry: dict) -> None:
         {"$setOnInsert": entry},
         upsert=True,
     )
+
+
+# ─── PERIOD-BASED LOG FETCHING (for Monitor C) ───────────────────────────────
+
+def get_logs_by_period(start: str = None, end: str = None) -> list[dict]:
+    """
+    Returns usage logs filtered by timestamp period.
+
+    Args:
+        start: ISO date string "YYYY-MM-DD" — fetch logs FROM this date (inclusive).
+        end:   ISO date string "YYYY-MM-DD" — fetch logs BEFORE this date (exclusive).
+
+    Examples:
+        get_logs_by_period(end="2024-06-01")          # everything before June 1
+        get_logs_by_period(start="2024-06-01")         # everything from June 1 onward
+        get_logs_by_period("2024-05-01", "2024-06-01") # just May
+    """
+    query = {}
+    if start and end:
+        query["timestamp"] = {"$gte": start, "$lt": end}
+    elif start:
+        query["timestamp"] = {"$gte": start}
+    elif end:
+        query["timestamp"] = {"$lt": end}
+
+    return list(db.usage_logs.find(query, {"_id": 0}).sort("timestamp", 1))
