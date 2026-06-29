@@ -206,8 +206,7 @@ async def run_agent(
             "user_message":     user_message,
             "final_response":   cached,
         })
-        return cached, True
-
+        return cached, True, None
     # ── 2. LLM call (cache miss) ──────────────────────────────────────────────
     deps = KayfaDeps(db=kayfa_db, session_id=session_id)
     start = time.time()
@@ -233,4 +232,4 @@ async def run_agent(
     # ── 4. Store in cache for future similar queries ───────────────────────────
     store_in_cache(user_message, result.output)
 
-    return result.output, False
+    return result.output, False, result

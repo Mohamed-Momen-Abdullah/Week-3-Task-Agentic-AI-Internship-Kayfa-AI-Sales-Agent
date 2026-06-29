@@ -226,7 +226,7 @@ if prompt:
             try:
                 import asyncio
                 
-                result, from_cache = asyncio.run(
+                response_text, from_cache, raw_result = asyncio.run(
                     run_agent(
                         user_message=prompt,
                         session_id=st.session_state.session_id,
@@ -248,7 +248,6 @@ if prompt:
 
             # --- SAFELY EXTRACT TEXT ---
             # If it's a cached string, use it directly. Otherwise, extract .output
-            response_text = result if isinstance(result, str) else result.output
 
             st.markdown(render_text(response_text), unsafe_allow_html=True)
             
@@ -257,14 +256,14 @@ if prompt:
             if not from_cache:
                 user = get_current_user()
                 user_id = user["username"] if user else "anonymous"
-                log_agent_turn(result, st.session_state.session_id, user_id, latency)
+                log_agent_turn(raw_result, st.session_state.session_id, user_id, latency)
 
     # Append the safe text to UI messages
     st.session_state.messages.append({"role": "assistant", "content": response_text})
     
     # Only append new history if we actually ran the model and the method exists
-    if not from_cache and hasattr(result, "new_messages"):
-        st.session_state.history += result.new_messages()
+    if not from_cache and raw_result is not None:
+        st.session_state.history += raw_result.new_messages()
 
     save_session_state(
         st.session_state.session_id,
