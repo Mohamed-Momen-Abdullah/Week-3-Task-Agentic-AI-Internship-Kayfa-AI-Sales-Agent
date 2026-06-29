@@ -6,6 +6,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 import streamlit as st
 from agent.bot import kayfa_agent, KayfaDeps
+from agent.bot import run_agent
 from agent.rag import kayfa_db
 from database.mongo import (
     save_chat_turn,
@@ -215,19 +216,25 @@ if prompt:
 
     save_chat_turn(st.session_state.session_id, "user", prompt)
 
-    # Agent turn
+# Agent turn
     with st.chat_message("assistant", avatar="🤖"):
         with st.spinner("Thinking..."):
-            deps = KayfaDeps(db=kayfa_db, session_id=st.session_state.session_id)
             clean_history = [m for m in st.session_state.history if isinstance(m, (ModelRequest, ModelResponse))]
             history_window = clean_history[-6:] if len(clean_history) > 6 else clean_history            
             start_time = time.time()
+            
             try:
-                result = kayfa_agent.run_sync(
-                    prompt,
-                    deps=deps,
-                    message_history=history_window,
+                import asyncio
+                
+                result, from_cache = asyncio.run(
+                    run_agent(
+                        user_message=prompt,
+                        session_id=st.session_state.session_id,
+                        user_id=username,
+                        message_history=history_window,
+                    )
                 )
+                
             except Exception as e:
                 st.error(f"{type(e).__name__}: {e}")
                 st.write("status_code:", getattr(e, "status_code", None))
@@ -235,15 +242,29 @@ if prompt:
                 st.stop()
 
             latency = time.time() - start_time
-            st.markdown(render_text(result.output), unsafe_allow_html=True)
             
-            # --- PART 2: TRACE & COST LOGGING ---
-            user = get_current_user()
-            user_id = user["username"] if user else "anonymous"
-            log_agent_turn(result, st.session_state.session_id, user_id, latency)
+            if from_cache:
+                st.caption("⚡ *Loaded from Cache*")
 
-    st.session_state.messages.append({"role": "assistant", "content": result.output})
-    st.session_state.history += result.new_messages()
+            # --- SAFELY EXTRACT TEXT ---
+            # If it's a cached string, use it directly. Otherwise, extract .output
+            response_text = result if isinstance(result, str) else result.output
+
+            st.markdown(render_text(response_text), unsafe_allow_html=True)
+            
+            # --- TRACE & COST LOGGING ---
+            # Only log costs if we actually ran the AI model (not cached)
+            if not from_cache:
+                user = get_current_user()
+                user_id = user["username"] if user else "anonymous"
+                log_agent_turn(result, st.session_state.session_id, user_id, latency)
+
+    # Append the safe text to UI messages
+    st.session_state.messages.append({"role": "assistant", "content": response_text})
+    
+    # Only append new history if we actually ran the model and the method exists
+    if not from_cache and hasattr(result, "new_messages"):
+        st.session_state.history += result.new_messages()
 
     save_session_state(
         st.session_state.session_id,

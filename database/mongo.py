@@ -203,3 +203,26 @@ def get_session_trace(session_id: str) -> list[dict]:
     return list(
         db.usage_logs.find({"session_id": session_id}, {"_id": 0}).sort("timestamp", 1)
     )
+
+# ─── SEMANTIC CACHE ───────────────────────────────────────────────────────────
+
+def cache_lookup() -> list[dict]:
+    """
+    Returns all documents in the semantic_cache collection.
+    Each doc has: query (str), embedding (list[float]), response (str).
+    """
+    return list(db.semantic_cache.find({}, {"_id": 0}))
+
+
+def cache_store(entry: dict) -> None:
+    """
+    Inserts a new cache entry.
+    entry must contain: query, embedding, response.
+    Skips insertion if the exact same query string is already stored
+    (prevents duplicates on concurrent identical requests).
+    """
+    db.semantic_cache.update_one(
+        {"query": entry["query"]},
+        {"$setOnInsert": entry},
+        upsert=True,
+    )
