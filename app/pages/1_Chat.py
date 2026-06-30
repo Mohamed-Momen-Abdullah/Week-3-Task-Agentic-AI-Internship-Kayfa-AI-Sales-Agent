@@ -210,22 +210,27 @@ user_input = st.chat_input("Ask me about our courses, prices, or diplomas...")
 prompt = user_input or queued_prompt
 
 if prompt:
+    # ── Idempotency guard against Streamlit Cloud reconnect duplicate-runs ──
+    if st.session_state.get("processing_prompt") == prompt:
+        st.stop()  # a run for this exact prompt is already in flight/just finished
+    st.session_state["processing_prompt"] = prompt
+
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user", avatar="🧑‍💻"):
         st.markdown(render_text(prompt), unsafe_allow_html=True)
 
     save_chat_turn(st.session_state.session_id, "user", prompt)
 
-# Agent turn
+    # Agent turn
     with st.chat_message("assistant", avatar="🤖"):
         with st.spinner("Thinking..."):
             clean_history = [m for m in st.session_state.history if isinstance(m, (ModelRequest, ModelResponse))]
-            history_window = clean_history[-6:] if len(clean_history) > 6 else clean_history            
+            history_window = clean_history[-6:] if len(clean_history) > 6 else clean_history
             start_time = time.time()
-            
+
             try:
                 import asyncio
-                
+
                 response_text, from_cache, raw_result = asyncio.run(
                     run_agent(
                         user_message=prompt,
@@ -234,7 +239,7 @@ if prompt:
                         message_history=history_window,
                     )
                 )
-                
+
             except Exception as e:
                 st.error(f"{type(e).__name__}: {e}")
                 st.write("status_code:", getattr(e, "status_code", None))
@@ -242,17 +247,12 @@ if prompt:
                 st.stop()
 
             latency = time.time() - start_time
-            
+
             if from_cache:
                 st.caption("⚡ *Loaded from Cache*")
 
-            # --- SAFELY EXTRACT TEXT ---
-            # If it's a cached string, use it directly. Otherwise, extract .output
-
             st.markdown(render_text(response_text), unsafe_allow_html=True)
-            
-            # --- TRACE & COST LOGGING ---
-            # Only log costs if we actually ran the AI model (not cached)
+
             if not from_cache:
                 user = get_current_user()
                 user_id = user["username"] if user else "anonymous"
@@ -260,8 +260,7 @@ if prompt:
 
     # Append the safe text to UI messages
     st.session_state.messages.append({"role": "assistant", "content": response_text})
-    
-    # Only append new history if we actually ran the model and the method exists
+
     if not from_cache and raw_result is not None:
         st.session_state.history += raw_result.new_messages()
 
@@ -271,5 +270,8 @@ if prompt:
         st.session_state.history,
         username=username,
     )
+
+    # ── Clear the lock now that this prompt is fully processed ──────────────
+    st.session_state.pop("processing_prompt", None)
 
     st.rerun()
